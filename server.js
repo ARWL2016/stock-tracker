@@ -27,8 +27,11 @@ request(url, (error, response, body) => {
 app.get('/data', (req, res) => {
   res.send(results);
   res.end();
-})
+});
 
+// app.get('*', function(req, res) { 
+//   res.sendFile(__dirname + '/app/index.html'); 
+// });
 
 
 app.listen(3000, () => {
