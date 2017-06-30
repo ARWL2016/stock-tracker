@@ -1,0 +1,21 @@
+{
+  "name": "stock-tracker",
+  "description": "app for free code camp challenge",
+  "main": "index.js",
+  "authors": [
+    "Alistair Willis"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ARWL2016/stock-tracker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.0",
+    "angular-route": "1.4.0"
+  }
+}

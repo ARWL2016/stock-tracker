@@ -1,8 +1,10 @@
 const express = require('express'); 
-const bodyParser = require('body-parser');
+const path = require('path');
 const request = require('request');
 const chalk = require('chalk');
 const app = express(); 
+
+app.use(express.static(path.join(__dirname, 'app'))); 
 
 let key = require('./config.json').QUANDL_API_KEY;
 let database_code = 'LSE';
@@ -22,7 +24,7 @@ request(url, (error, response, body) => {
   console.log('results:', results.dataset.description); 
 }); 
 
-app.get('/', (req, res) => {
+app.get('/data', (req, res) => {
   res.send(results);
   res.end();
 })
