@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const chalk = require('chalk');
 const app = express(); 
-// app.set('json spaces', 2);
 
 let key = require('./config.json').QUANDL_API_KEY;
 let database_code = 'LSE';
