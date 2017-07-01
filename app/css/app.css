@@ -1,0 +1,15 @@
+.heading {
+  color: orange;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+#search-input {
+  width: 170px; 
+}

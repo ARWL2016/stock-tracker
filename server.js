@@ -1,8 +1,11 @@
 const express = require('express'); 
 const path = require('path');
 const request = require('request');
+const compression = require('compression');
 const chalk = require('chalk');
+
 const app = express(); 
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'app'))); 
 
@@ -18,18 +21,16 @@ let url = `https://www.quandl.com/api/v3/datasets/${database_code}/${dataset_cod
 var results; 
 
 var start = Date.now(); 
-console.log(start);
 var finish;
-request(url, (error, response, body) => {
-  console.log('error:', error); 
-  console.log('statusCode:', response && response.statusCode); 
-  results = JSON.parse(response.body);
-  console.log('results:', results.dataset.description); 
-  finish = Date.now(); 
-  console.log(finish); 
-  console.log(finish - start);
+// request(url, (error, response, body) => {
+//   console.log('error:', error); 
+//   console.log('statusCode:', response && response.statusCode); 
+//   results = JSON.parse(response.body);
+//   console.log('results:', results.dataset.description); 
+//   finish = Date.now(); 
+//   console.log((finish - start) +  ' ms');
 
-}); 
+// }); 
 
 app.get('/data', (req, res) => {
   res.send(results);

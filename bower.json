@@ -15,8 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.4.0",
-    "angular-route": "1.4.0",
-    "jquery": "1.7.2"
+    "jquery": "1.7.2",
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-material": "^1.1.4"
+  },
+  "resolutions": {
+    "angular": "1.4.9"
   }
 }
