@@ -1,1 +1,6 @@
-<div>Get Stocks</div>
+<h2>Get Stocks</h2>
+<form> 
+  <input type="search" ng-model="number" ng-change="add(number)" placeholder="search for stocks"/>
+  <button type="submit" ng-click="add(number)">Add</button>
+</form>
+<div>{{output}}</div>

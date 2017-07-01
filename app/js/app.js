@@ -1,10 +1,11 @@
 'use strict';
 
-var stockTrackerApp = angular.module('stockTrackerApp', []);
-    // .config(function($routeProvider, $locationProvider) {
-    //     $routeProvider.when('/stocks', 
-    //     {
-    //       templateUrl: 'templates/GetStocks.html', 
-    //       controller: 'GetStocksController'
-    //     });
-    // });
+var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute'])
+    .config(function($routeProvider, $locationProvider) {
+        $routeProvider.when('/stocks', 
+          {
+            templateUrl: 'js/templates/GetStocks.html', 
+            controller: 'GetStocksController'
+          });
+        $routeProvider.otherwise({redirectTo: '/'})
+    });

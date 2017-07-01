@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'app'))); 
 
-let key = require('./config.json').QUANDL_API_KEY;
+const key = require('./config.json').QUANDL_API_KEY;
 let database_code = 'LSE';
 let dataset_code = 'RBS';
 let rows = 10; 
@@ -17,11 +17,18 @@ let url = `https://www.quandl.com/api/v3/datasets/${database_code}/${dataset_cod
 
 var results; 
 
+var start = Date.now(); 
+console.log(start);
+var finish;
 request(url, (error, response, body) => {
   console.log('error:', error); 
   console.log('statusCode:', response && response.statusCode); 
   results = JSON.parse(response.body);
   console.log('results:', results.dataset.description); 
+  finish = Date.now(); 
+  console.log(finish); 
+  console.log(finish - start);
+
 }); 
 
 app.get('/data', (req, res) => {
