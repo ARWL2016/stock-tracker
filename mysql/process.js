@@ -1,12 +1,9 @@
 const companies = require('./stock-symbols.js');
 
-let symbols = companies.map(company => {
-   return company.symbol; 
+const symbols = companies.map(company => {
+  let raw = company.symbol;
+  return raw.slice(0, raw.length -2);
 });
 
-console.log(symbols);
-
-module.exports = {
-  symbols
-}
+module.exports = { symbols };
   
