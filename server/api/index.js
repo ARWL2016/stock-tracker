@@ -1,6 +1,5 @@
 const request = require('request');
 const { connection } = require('../../mysql');
-const util = require('util');
 const mysql = require('mysql');
 
 const key = require('../config').api_key;

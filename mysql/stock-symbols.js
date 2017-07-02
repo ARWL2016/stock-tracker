@@ -1,8 +1,4 @@
-[
-	{
-		"symbol" : "Symbol",
-		"company_name" : "Company Name"
-	},
+module.exports = [
 	{
 		"symbol" : "AAL.L",
 		"company_name" : "ANGLO AMERICAN"
