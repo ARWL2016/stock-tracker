@@ -1,5 +1,6 @@
 stockTrackerApp.factory('stockData', function($http) {
     var currentData = []; 
+    var currentSymbols = [];
 
     function updateCurrentData(symbol, data) {
       var obj = { 
@@ -10,23 +11,42 @@ stockTrackerApp.factory('stockData', function($http) {
         return obj.symbol !== symbol;
       })
       currentData.push(obj); 
-      console.log(currentData); 
+      var temp = [];
+      currentData.forEach(obj => {
+        temp.push(obj.symbol);  
+      });
+      currentSymbols = temp;
+      console.log('currentSymbols:', currentSymbols); 
+      console.log('currentData: ', currentData); 
     }
 
     return {
       getTimeSeriesData: function(symbol) {
         var symbol = symbol.toUpperCase(); 
-        $http.get(`/data/${symbol}`)
+        
+        return $http.get(`/data/${symbol}`)
           .then(function success(res) {
             var data = JSON.parse(res.data[0].data_string);
-            console.log(data);
+            console.log('http call resolved with this: ', data);
             updateCurrentData(symbol, data);
+            return Promise.resolve(); 
            
           })
           .catch(function error(err) {
             console.log(err);
           })
+      },
+
+      getCurrentData: function() {
+        return currentData;  
+      }, 
+
+      getCurrentSymbols: function() {
+        return currentSymbols;
       }
+
+
+      
  
     };
 });
