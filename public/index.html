@@ -25,10 +25,8 @@
               <label>Symbol</label>
               <input type="search" ng-model="symbol" id="search-input"/>
             </md-input-container>
-            <md-button ng-click="getStockData()" class="md-raised">Search</md-button>
-            {{ data }}
+            <md-button ng-click="getStockData(symbol)" class="md-raised">Search</md-button>
           </form>
-          <div>{{output}}</div>
         </md-content>
       </md-sidenav>
 

@@ -56,7 +56,7 @@ module.exports = [
 		"company_name" : "BRIT AMER TOBACCO"
 	},
 	{
-		"symbol" : "BG.L",
+		"symbol" : "BG_.L",
 		"company_name" : "BG GROUP"
 	},
 	{
