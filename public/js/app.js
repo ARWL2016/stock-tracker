@@ -7,7 +7,7 @@ var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'ngMaterial'
   // .config(function($routeProvider, $locationProvider) {
   //     $routeProvider.when('/stocks', 
   //       {
-  //         templateUrl: 'js/templates/GetStocks.html', 
+  //         templateUrl: 'templates/GetStocks.html', 
   //         controller: 'GetStocksController'
   //       });
   //     $routeProvider.otherwise({redirectTo: '/'})
