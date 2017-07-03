@@ -5,16 +5,11 @@ var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'ngMaterial'
     $log.info('Stock Tracker App ready to go');
   })
   .config(function($routeProvider, $locationProvider) {
-      $routeProvider.when('/chart', 
+      $routeProvider.when('/main', 
         {
-          templateUrl: 'templates/Chart.html', 
-          controller: 'ChartController'
+          templateUrl: 'templates/Main.html', 
+          controller: 'MainController'
         });
-      $routeProvider.when('/table', 
-      {
-        templateUrl: 'templates/Table.html', 
-        controller: 'TableController'
-      });
-      $routeProvider.otherwise({redirectTo: '/'});
+      $routeProvider.otherwise({redirectTo: '/main'});
       $locationProvider.html5Mode(true);
   });
