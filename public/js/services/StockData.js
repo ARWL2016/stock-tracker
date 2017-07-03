@@ -2,7 +2,10 @@ stockTrackerApp.factory('stockData', function($http) {
     var currentData = []; 
 
     function updateCurrentData(symbol, data) {
-      var obj = { symbol: data }; 
+      var obj = { 
+        symbol: symbol, 
+        data: data 
+      }; 
       currentData = currentData.filter(obj => {
         return obj.symbol !== symbol;
       })
@@ -12,7 +15,7 @@ stockTrackerApp.factory('stockData', function($http) {
 
     return {
       getTimeSeriesData: function(symbol) {
-        console.log('Data Service:', symbol);
+        var symbol = symbol.toUpperCase(); 
         $http.get(`/data/${symbol}`)
           .then(function success(res) {
             var data = JSON.parse(res.data[0].data_string);

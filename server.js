@@ -9,11 +9,12 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'public'))); 
 
-// app.get('*', function(req, res) { 
-//   res.sendFile(__dirname + '/app/index.html'); 
-// });
-
 app.get('/data/:id', controller.fetchPricesBySymbol);
+
+app.get('*', function(req, res) { 
+  res.sendFile(__dirname + '/public/index.html'); 
+});
+
 
 app.listen(3000, () => {
   console.log(chalk.green('listening on port 3000')); 
