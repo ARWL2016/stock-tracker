@@ -1,12 +1,46 @@
+/* BASE STYLES */
+
 * {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1em;
   letter-spacing: 1px; 
-  margin: 0;
-  border: 0;
 }
 
-/* CONTAINERS */
+body, 
+html {
+  margin: 0; 
+  padding: 0 
+}
+table {
+  padding: px;
+  margin: 12px;
+  /*border: 1px dotted green;*/
+ 
+}
+
+th, td {
+  /*border: 1px dotted green;*/
+  padding: 3px;
+  margin: 3px;
+  text-align: center;
+}
+
+th {
+   background: orange;
+   height: 36px; 
+}
+
+.symbol-column {
+  width: 140px;
+}
+.desc-column {
+  width: 400px;
+}
+.date-column {
+   width: 140px; 
+}
+
+/* LAYOUT STYLES */
 .navbar-container,
 .view-container {
   width: 960px; 
@@ -23,6 +57,7 @@
 
 ul.navbar-menu {
   padding: 16px;
+  margin: 0;
 }
 
 .logo {
@@ -32,7 +67,6 @@ ul.navbar-menu {
 .navbar-menu li {
   display: inline-block;
 }
-
 
 .navbar-menu li a {
   text-decoration: none;
@@ -47,7 +81,7 @@ ul.navbar-menu {
 
 .search-input {
   width: 250px; 
-  height: 30px; 
+  height: 36px; 
   margin-right: 10px;
   padding-left: 10px;
 }

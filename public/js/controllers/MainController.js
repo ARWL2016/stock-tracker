@@ -2,13 +2,19 @@
 
 stockTrackerApp.controller('MainController', 
   function MainController($scope, stockData) {
-    $scope.symbol;
-    $scope.data;
+    $scope.activeSymbols = [];
+    $scope.activeData = [];
     
     $scope.getStockData = (symbol) => {
       stockData.getTimeSeriesData(symbol)
-        .then(data => {
-          console.log('THEN', data);
+        .then(res => {
+          if (res) {
+            // stockData.getCurrentData(); 
+            $scope.activeSymbols = stockData.getActiveSymbols();
+            $scope.activeData = stockData.getActiveData(); 
+            console.log('MainCtrl:', $scope.activeSymbols);
+            console.log('MainCtrl:', $scope.activeData);
+          }
         })
     }
   }

@@ -3,3 +3,16 @@
     <input type="search" ng-model="symbol" class="search-input" placeholder=" search stock by symbol"/>
     <button class="search-btn">Search</button>
   </form>
+
+  <table> 
+    <tr> 
+      <th class="symbol-column">Symbol</th>
+      <th class="desc-column">Description</th>
+      <th class="date-column">Latest Date</th>
+    </tr>
+    <tr ng-repeat="data in activeData"> 
+      <td class="symbol-column">{{data.symbol}}</td>
+      <td class="desc-column">{{data.dataset.name}}</td>
+      <td class="date-column">{{data.dataset.newest_available_date | date : 'MM-d-yyyy'}}</td>
+    </tr>
+  </table>

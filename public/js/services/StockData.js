@@ -1,17 +1,17 @@
 stockTrackerApp.factory('stockData', function($http) {
-  var currentData = []; 
-  var currentSymbols = [];
+  var activeData = []; 
+  var activeSymbols = [];
 
-  function updateCurrentData(symbol, data) {
-    var obj = { symbol, data }; 
+  function updateActiveData(symbol, data) {
+    var obj = { symbol, dataset: data.dataset }; 
     var temp = [];
 
-    currentData = currentData.filter(obj => obj.symbol !== symbol);
-    currentData.push(obj); 
-    currentData.forEach(obj => temp.push(obj.symbol));
-    currentSymbols = temp;
-    console.log('currentSymbols:', currentSymbols); 
-    console.log('currentData: ', currentData); 
+    activeData = activeData.filter(obj => obj.symbol !== symbol);
+    activeData.push(obj); 
+    activeData.forEach(obj => temp.push(obj.symbol));
+    activeSymbols = temp;
+    // console.log('activeSymbols:', activeSymbols); 
+    // console.log('activeData: ', activeData); 
   }
 
   return {
@@ -22,18 +22,18 @@ stockTrackerApp.factory('stockData', function($http) {
         .then(res => {
           const data = JSON.parse(res.data[0].data_string);
           console.log('http call resolved with this: ', data);
-          updateCurrentData(symbol, data);
-          return data;
+          updateActiveData(symbol, data);
+          return true;
         })
         .catch(err => console.log(err));
     },
 
-    getCurrentData() {
-      return currentData;  
+    getActiveData() {
+      return activeData;  
     }, 
 
-    getCurrentSymbols() {
-      return currentSymbols;
+    getActiveSymbols() {
+      return activeSymbols;
     }
 
     };
