@@ -9,35 +9,23 @@
 body, 
 html {
   margin: 0; 
-  padding: 0 
+  padding: 0; 
+  background-color: #F4F1DE;
 }
 table {
   padding: px;
   margin: 12px;
   /*border: 1px dotted green;*/
- 
 }
-
 th, td {
   /*border: 1px dotted green;*/
   padding: 3px;
   margin: 3px;
   text-align: center;
 }
-
 th {
    background: orange;
    height: 36px; 
-}
-
-.symbol-column {
-  width: 140px;
-}
-.desc-column {
-  width: 400px;
-}
-.date-column {
-   width: 140px; 
 }
 
 /* LAYOUT STYLES */
@@ -45,6 +33,20 @@ th {
 .view-container {
   width: 960px; 
   margin: 0 auto;
+}
+
+/* TABLE STYLES*/
+.symbol-column {
+  width: 120px;
+}
+.desc-column {
+  width: 400px;
+}
+td.desc-column {
+  text-align: left;
+}
+.date-column {
+   width: 140px; 
 }
 
 /* NAVBAR */
@@ -91,4 +93,22 @@ ul.navbar-menu {
   width: 100px; 
   background-color: orange;
   border: 0
+}
+
+/* BADGES */
+
+.badge-container {
+  margin-left: 15px; 
+}
+
+.symbol-badge {
+  margin-right: 10px;
+  background-color: orange;
+  padding: 3px 10px 3px 10px; 
+  border-radius: 7px; 
+}
+
+.symbol-badge:hover {
+  cursor: pointer;
+  cursor: hand;
 }

@@ -3,6 +3,9 @@
     <input type="search" ng-model="symbol" class="search-input" placeholder=" search stock by symbol"/>
     <button class="search-btn">Search</button>
   </form>
+  <div class="badge-container">
+    <span ng-repeat="symbol in activeSymbols" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{symbol}}</span>
+  </div>
 
   <table> 
     <tr> 

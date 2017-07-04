@@ -7,12 +7,14 @@ const { api_key } = require('../config');
 let dataset_code = '';
 let interval = ['none', 'daily', 'weekly'][1];
 
-var count = 15;
+function updateData() {
+
+  var count = 0;
 
   var singleRequestID = setInterval(function() {
     dataset_code = symbols[count];
     count++;
-    if (count > 18) {
+    if (count > 98) {
       clearInterval(singleRequestID);
     }
     console.log(dataset_code);
@@ -33,6 +35,10 @@ var count = 15;
       }
     }); 
   }, 3000);
+
+}
+
+module.exports = { updateData }
 
   
 

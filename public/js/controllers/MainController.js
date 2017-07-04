@@ -17,5 +17,15 @@ stockTrackerApp.controller('MainController',
           }
         })
     }
+
+    $scope.removeSymbol = (sym) => {
+      console.log('this', sym);
+      $scope.activeSymbols.forEach((symbol, i) => {
+        if (symbol === sym) {
+          $scope.activeSymbols.splice(i, 1);
+          $scope.activeData.splice(i, 1);
+        }
+      })
+    }
   }
 )
