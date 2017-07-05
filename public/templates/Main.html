@@ -7,11 +7,19 @@
     <span ng-repeat="symbol in activeSymbols" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{symbol}}</span>
 </div>
 
-<div>
-    <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
-</canvas>
-
+<div class="chart-container">
+  <canvas 
+    id="line" 
+    class="chart chart-line" 
+    chart-data="data"
+    chart-labels="labels" 
+    chart-series="series" 
+    chart-options="options"
+    chart-dataset-override="datasetOverride" 
+    chart-click="onClick">
+  </canvas>
 </div>
+
 
 <table>
     <tr>
@@ -21,7 +29,7 @@
     </tr>
     <tr ng-repeat="data in activeData">
         <td class="symbol-column">{{data.symbol}}</td>
-        <td class="desc-column">{{data.dataset.name}}</td>
-        <td class="date-column">{{data.dataset.newest_available_date | date : 'MM-d-yyyy'}}</td>
+        <td class="desc-column">{{data.description}}</td>
+        <td class="date-column">{{data.newest_available_date | date : 'MM-d-yyyy'}}</td>
     </tr>
 </table>

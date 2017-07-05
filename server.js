@@ -20,8 +20,8 @@ app.listen(3000, () => {
     console.log(chalk.green('listening on port 3000'));
 });
 
-updateData();
+// updateData();
 setInterval(function() {
     console.log('updating...');
     updateData();
-}, 1000 * 3600 * 24)
+}, 1000 * 3600 * 24);
