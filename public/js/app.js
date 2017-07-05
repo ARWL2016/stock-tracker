@@ -1,15 +1,14 @@
 'use strict';
 
-var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'ngMaterial'])
-  .run(function($log) {
-    $log.info('Stock Tracker App ready to go');
-  })
-  .config(function($routeProvider, $locationProvider) {
-      $routeProvider.when('/main', 
-        {
-          templateUrl: 'templates/Main.html', 
-          controller: 'MainController'
+var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'ngMaterial', 'chart.js'])
+    .run(function($log) {
+        $log.info('Stock Tracker App ready to go');
+    })
+    .config(function($routeProvider, $locationProvider) {
+        $routeProvider.when('/main', {
+            templateUrl: 'templates/Main.html',
+            controller: 'MainController'
         });
-      $routeProvider.otherwise({redirectTo: '/main'});
-      $locationProvider.html5Mode(true);
-  });
+        $routeProvider.otherwise({ redirectTo: '/main' });
+        $locationProvider.html5Mode(true);
+    });

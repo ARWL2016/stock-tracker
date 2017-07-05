@@ -1,21 +1,27 @@
-  <form class="search-form" ng-submit="getStockData(symbol)"> 
+<form class="search-form" ng-submit="getStockData(symbol)">
     <p>Enter a stock symbol or company name</p>
-    <input type="search" ng-model="symbol" class="search-input" placeholder=" search stock by symbol"/>
+    <input type="search" ng-model="symbol" class="search-input" placeholder=" search stock by symbol" />
     <button class="search-btn"><b>Search</b></button>
-  </form>
-  <div class="badge-container">
+</form>
+<div class="badge-container">
     <span ng-repeat="symbol in activeSymbols" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{symbol}}</span>
-  </div>
+</div>
 
-  <table> 
-    <tr> 
-      <th class="symbol-column">Symbol</th>
-      <th class="desc-column">Description</th>
-      <th class="date-column">Latest Date</th>
+<div>
+    <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+</canvas>
+
+</div>
+
+<table>
+    <tr>
+        <th class="symbol-column">Symbol</th>
+        <th class="desc-column">Description</th>
+        <th class="date-column">Latest Date</th>
     </tr>
-    <tr ng-repeat="data in activeData"> 
-      <td class="symbol-column">{{data.symbol}}</td>
-      <td class="desc-column">{{data.dataset.name}}</td>
-      <td class="date-column">{{data.dataset.newest_available_date | date : 'MM-d-yyyy'}}</td>
+    <tr ng-repeat="data in activeData">
+        <td class="symbol-column">{{data.symbol}}</td>
+        <td class="desc-column">{{data.dataset.name}}</td>
+        <td class="date-column">{{data.dataset.newest_available_date | date : 'MM-d-yyyy'}}</td>
     </tr>
-  </table>
+</table>
