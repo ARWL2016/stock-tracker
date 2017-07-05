@@ -19,7 +19,8 @@ stockTrackerApp.controller('MainController',
             $scope.activePriceData = stockData.getActivePriceData();
             console.log('MainCtrl:', $scope.activeSymbols);
             console.log('MainCtrl:', $scope.activeData);
-            console.log('MainCtrol: ', $scope.activePriceData );
+            console.log('MainCtrol: ', $scope.activePriceData);
+            $scope.renderChart(); 
           }
         })
     };
@@ -34,23 +35,52 @@ stockTrackerApp.controller('MainController',
         })
     };
 
-    // updateChart = () => {
+    $scope.renderChart = () => {
+      var labelsArray = [];
+      var dataArray = [];
+      var seriesLength = 1500;
+      var seriesCount = $scope.activePriceData.length;
+      console.log(seriesCount);
+      // add data for new series
 
-    // }
+      $scope.activePriceData[seriesCount-1].forEach((dataPoint, index) => {
+        if (index < seriesLength) {
+          dataArray.unshift(dataPoint[1]);
+          labelsArray.unshift(dataPoint[0]);
+        }
+      }); 
+      $scope.data.push(dataArray);
+      $scope.labels = labelsArray;
+      $scope.series.push($scope.activeSymbols[seriesCount-1]);
+       
+      console.log($scope.data);
+      console.log($scope.labels);
+      console.log($scope.series);
+    }
 
+    
       // CHART 
 
-      $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-      $scope.series = ['AZN', 'BARC'];
-      $scope.data = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-      ];
+      $scope.labels = [];
+      $scope.series = [];
+      $scope.data = [ ];
       $scope.onClick = function (points, evt) {
         console.log(points, evt);
       };
-      $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+      $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
       $scope.options = {
+        layout: {
+          padding: 20
+        },
+        elements: {
+          line: {
+            tension: 0
+          }, 
+          point: {
+            radius: 1
+          }
+        },
+        showLines: true,
         legend: {
           display: true, 
           position: 'right'
@@ -65,12 +95,6 @@ stockTrackerApp.controller('MainController',
               ticks: {
                 beginAtZero: true
               }
-            },
-            {
-              id: 'y-axis-2',
-              type: 'linear',
-              display: true,
-              position: 'right'
             }
           ]
         }
