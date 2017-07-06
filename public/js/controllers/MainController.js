@@ -3,6 +3,7 @@
 stockTrackerApp.controller('MainController',
 
   function MainController($scope, stockDataService, chartConfigService, symbolService) {
+
     $scope.symbolInput = '';
     $scope.companyIndex = symbolService.index;
     // active data repository
@@ -10,11 +11,11 @@ stockTrackerApp.controller('MainController',
 
     // chart data 
     $scope.dates = []; // x-axis 
-    $scope.company_symbols = []; // stores a title for each data series 
-    $scope.data = [ ]; // stores an array for each data series
+    $scope.company_symbols = []; // stores the legend for each data series 
+    $scope.data = []; // stores an array for each data series
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.options = chartConfigService.options;
-    $scope.timescaleSelected = 'oneYear'; 
+    $scope.timescaleSelected = 'fiveYears'; 
     $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
 
     $scope.getStockData = (company) => {
@@ -49,7 +50,9 @@ stockTrackerApp.controller('MainController',
           if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
             dataArray.unshift(price[1]);
             if (packetIndex === 0) {
-              datesArray.unshift(price[0]);
+              // remove the date when timescale is > 6 months 
+              const trimmedDate = divisor === 1 || divisor === 2 ? price[0] : price[0].slice(0, 7);
+              datesArray.unshift(trimmedDate);
             }
           }
         }); 
@@ -74,6 +77,11 @@ stockTrackerApp.controller('MainController',
       $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
       $scope.renderChart();
     }
+
+    const init = () => {
+      $scope.getStockData('HSBC HLDG [HSBA]');
+    };
+    init(); 
 
   }
 )

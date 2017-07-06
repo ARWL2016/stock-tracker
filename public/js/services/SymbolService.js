@@ -24,10 +24,10 @@ stockTrackerApp.factory('symbolService', function() {
         "symbol" : "ANTO.L",
         "company_name" : "ANTOFAGASTA"
       },
-      {
-        "symbol" : "ARM.L",
-        "company_name" : "ARM HOLDINGS"
-      },
+      // {
+      //   "symbol" : "ARM.L",
+      //   "company_name" : "ARM HOLDINGS"
+      // },
       {
         "symbol" : "ASHM.L",
         "company_name" : "ASHMORE GRP"

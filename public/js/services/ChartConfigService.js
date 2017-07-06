@@ -6,7 +6,7 @@ stockTrackerApp.factory('chartConfigService', function() {
     },
     title: {
     display: true,
-    text: 'FTSE 100'
+    text: 'London Stock Exchange FTSE 100'
   },
     responsive: false,
     elements: {

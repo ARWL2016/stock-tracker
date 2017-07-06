@@ -5,7 +5,7 @@ https://docs.quandl.com/docs/parameters-2
 
 #### To Do  
 - add error checking
-- add default items
-- add co name to search input 
+- prepare for deployment
+
 
  
