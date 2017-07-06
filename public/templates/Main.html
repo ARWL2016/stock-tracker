@@ -4,11 +4,11 @@
     <button class="search-btn"><b>Search</b></button>
 </form>
 <div class="badge-container">
-    <span ng-repeat="packet in packets" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{packet.symbol}}</span>
+    <span ng-repeat="packet in packets" class="symbol-badge" ng-click="removeSymbol(packet.symbol)" title="Click to remove">{{packet.symbol}}</span>
 </div>
 
 <div class="chart-container">
-  <canvas width="500" height="280"
+  <canvas width="720" height="300"
     id="line" 
     class="chart chart-line" 
     chart-data="data"

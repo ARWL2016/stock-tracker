@@ -4,12 +4,13 @@ stockTrackerApp.factory('chartConfigService', function() {
       layout: {
         padding: 20
       },
+      responsive: false,
       elements: {
         line: {
           tension: 0
         }, 
         point: {
-          radius: 1
+          radius: 3
         }
       },
       showLines: true,
