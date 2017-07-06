@@ -4,7 +4,7 @@
     <button class="search-btn"><b>Search</b></button>
 </form>
 <div class="badge-container">
-    <span ng-repeat="symbol in activeSymbols" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{symbol}}</span>
+    <span ng-repeat="packet in packets" class="symbol-badge" ng-click="removeSymbol(symbol)" title="Click to remove">{{packet.symbol}}</span>
 </div>
 
 <div class="chart-container">
@@ -27,9 +27,9 @@
         <th class="desc-column">Description</th>
         <th class="date-column">Latest Date</th>
     </tr>
-    <tr ng-repeat="data in activeData">
-        <td class="symbol-column">{{data.symbol}}</td>
-        <td class="desc-column">{{data.description}}</td>
-        <td class="date-column">{{data.newest_available_date | date : 'MM-d-yyyy'}}</td>
+    <tr ng-repeat="packet in packets">
+        <td class="symbol-column">{{packet.symbol}}</td>
+        <td class="desc-column">{{packet.description}}</td>
+        <td class="date-column">{{packet.newest_available_date | date : 'MM-d-yyyy'}}</td>
     </tr>
 </table>

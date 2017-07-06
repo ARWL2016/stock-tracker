@@ -4,9 +4,11 @@ stockTrackerApp.controller('MainController',
 
   function MainController($scope, stockDataService, chartConfigService) {
     $scope.symbol = '';
-    $scope.activeSymbols = [];
-    $scope.activePriceData = [];
 
+    // stored data
+    $scope.packets = [];
+
+    // chart data 
     $scope.labels = [];
     $scope.series = [];
     $scope.data = [ ];
@@ -19,17 +21,16 @@ stockTrackerApp.controller('MainController',
 
     $scope.getStockData = (symbol) => {
       stockDataService.getTimeSeriesData(symbol)
-        .then(res => {
-          if (res) {
+        .then(newPacket => {
+          if (newPacket) {
+            console.log('newPacket: ', newPacket);
             $scope.symbol = '';
-           
-            $scope.activeSymbols = stockDataService.getActiveSymbols();
-            $scope.activeData = stockDataService.getActiveData();
-            $scope.activePriceData = stockDataService.getActivePriceData();
-            console.log('MainCtrl:', $scope.activeSymbols);
-            console.log('MainCtrl:', $scope.activeData);
-            console.log('MainCtrol: ', $scope.activePriceData);
-            $scope.renderChart(); 
+
+            // remove duplicate packets 
+            $scope.packets = $scope.packets.filter(packet => packet.symbol !== newPacket.symbol);
+            $scope.packets.push(newPacket);
+
+            // $scope.renderChart(); 
           }
         })
     };
