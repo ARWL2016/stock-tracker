@@ -52,6 +52,11 @@ stockTrackerApp.factory('chartConfigService', function() {
       divisor: 8, 
       seriesLength: 520, 
       label: '2yrs'
+    },
+    fiveYears: {
+      divisor: 20, 
+      seriesLength: 1300, 
+      label: '5yrs'
     }
   }
   return { timescale, options };

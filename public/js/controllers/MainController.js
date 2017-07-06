@@ -14,8 +14,9 @@ stockTrackerApp.controller('MainController',
     $scope.data = [ ]; // stores an array for each data series
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.options = chartConfigService.options;
-    $scope.timescale = chartConfigService.timescale;
-    
+    $scope.timescaleSelected = 'oneYear'; 
+    $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
+
     $scope.getStockData = (symbol) => {
       stockDataService.getTimeSeriesData(symbol)
         .then(newPacket => {
@@ -39,8 +40,8 @@ stockTrackerApp.controller('MainController',
 
       let datesArray = [];
       let dataArray = [];
-      let divisor = 4
-      let seriesLength = 260;
+      let divisor = $scope.timescale.divisor; 
+      let seriesLength = $scope.timescale.seriesLength;
 
       $scope.packets.forEach((packet, packetIndex) => {
         packet.price_data.forEach((price, priceIndex) => {
@@ -57,7 +58,6 @@ stockTrackerApp.controller('MainController',
 
       $scope.company_symbols.push(packet.symbol);  
       }); 
-       
     }
 
     $scope.removeSymbol = (symbol) => {
@@ -67,6 +67,12 @@ stockTrackerApp.controller('MainController',
         }
       });
     };
+
+    $scope.changeTimescale = () => {
+      console.log('change', $scope.timescaleSelected);
+      $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
+      $scope.renderChart();
+    }
 
   }
 )

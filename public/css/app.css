@@ -101,9 +101,16 @@ ul.navbar-menu {
 
 .search-btn {
   height: 36px; 
-  width: 100px; 
+  width: 140px; 
+  margin-right: 10px;
   background-color: orange;
   border: 0
+}
+
+.select-input {
+  height: 36px; 
+  width: 140px;
+  padding: 3px; 
 }
 
 /* BADGES */
