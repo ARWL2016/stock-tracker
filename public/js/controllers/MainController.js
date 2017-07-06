@@ -2,21 +2,30 @@
 
 stockTrackerApp.controller('MainController',
 
-  function MainController($scope, stockData) {
+  function MainController($scope, stockDataService, chartConfigService) {
     $scope.symbol = '';
     $scope.activeSymbols = [];
     $scope.activePriceData = [];
+
+    $scope.labels = [];
+    $scope.series = [];
+    $scope.data = [ ];
+    $scope.onClick = function (points, evt) {
+      console.log(points, evt);
+    };
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+    $scope.options = chartConfigService.returnOptions();
     
 
     $scope.getStockData = (symbol) => {
-      stockData.getTimeSeriesData(symbol)
+      stockDataService.getTimeSeriesData(symbol)
         .then(res => {
           if (res) {
             $scope.symbol = '';
-            // stockData.getCurrentData(); 
-            $scope.activeSymbols = stockData.getActiveSymbols();
-            $scope.activeData = stockData.getActiveData();
-            $scope.activePriceData = stockData.getActivePriceData();
+           
+            $scope.activeSymbols = stockDataService.getActiveSymbols();
+            $scope.activeData = stockDataService.getActiveData();
+            $scope.activePriceData = stockDataService.getActivePriceData();
             console.log('MainCtrl:', $scope.activeSymbols);
             console.log('MainCtrl:', $scope.activeData);
             console.log('MainCtrol: ', $scope.activePriceData);
@@ -61,44 +70,7 @@ stockTrackerApp.controller('MainController',
     
       // CHART 
 
-      $scope.labels = [];
-      $scope.series = [];
-      $scope.data = [ ];
-      $scope.onClick = function (points, evt) {
-        console.log(points, evt);
-      };
-      $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-      $scope.options = {
-        layout: {
-          padding: 20
-        },
-        elements: {
-          line: {
-            tension: 0
-          }, 
-          point: {
-            radius: 1
-          }
-        },
-        showLines: true,
-        legend: {
-          display: true, 
-          position: 'right'
-        },
-        scales: {
-          yAxes: [
-            {
-              id: 'y-axis-1',
-              type: 'linear',
-              display: true,
-              position: 'left', 
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
-      };
+ 
 
   }
 )

@@ -1,4 +1,4 @@
-stockTrackerApp.factory('stockData', function($http) {
+stockTrackerApp.factory('stockDataService', function($http) {
   var activeData = []; 
   var activeSymbols = [];
   var activePriceData = [];
