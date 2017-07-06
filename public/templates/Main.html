@@ -1,48 +1,56 @@
-<form class="search-form" ng-submit="getStockData(symbolInput)">
-    <p>Enter a stock symbol or company name</p>
-    <input type="search" ng-model="symbolInput" list="symbol-list" class="search-input" placeholder=" search stock by symbol" />
+<div class="search-form-container">
+  <form class="search-form" ng-submit="getStockData(symbolInput)">
+      <p><b>Enter a stock symbol or company name to search.</b></p>
+      <input type="search" ng-model="symbolInput" list="symbol-list" class="search-input" />
 
-    <datalist id="symbol-list"> 
-      <option ng-repeat="company in companyIndex" value="{{company.symbol}}">
-    </datalist>
+      <datalist id="symbol-list"> 
+        <option ng-repeat="company in companyIndex" value="{{company.company_name}} [{{company.symbol}}]">
+      </datalist>
+      <select name="select" class="select-input" ng-model="timescaleSelected" ng-change="changeTimescale()"> 
+        <option value="threeMonths">3 months</option> 
+        <option value="sixMonths">6 months</option>
+        <option value="oneYear">1 year</option>
+        <option value="twoYears">2 years</option>
+        <option value="fiveYears">5 years</option>
+      </select>
+      <button class="search-btn"><b>Search</b></button>
+      <ul class="search-tips">
+        <li>Click on chart legend to toggle data</li>
+      </ul>
+  </form>
 
-    <button class="search-btn"><b>Search</b></button>
-    <select name="select" class="select-input" ng-model="timescaleSelected" ng-change="changeTimescale()"> 
-      <option value="threeMonths">3 months</option> 
-      <option value="sixMonths">6 months</option>
-      <option value="oneYear">1 year</option>
-      <option value="twoYears">2 years</option>
-      <option value="fiveYears">5 years</option>
-    </select>
-</form>
-<div class="badge-container">
-    <span ng-repeat="packet in packets" class="symbol-badge" ng-click="removeSymbol(packet.symbol)" title="Click to remove">{{packet.symbol}}</span>
 </div>
 
-<div class="chart-container">
-  <canvas width="700" height="300"
-    id="line" 
-    class="chart chart-line" 
-    chart-data="data"
-    chart-labels="dates" 
-    chart-series="company_symbols" 
-    chart-options="options"
-    chart-dataset-override="datasetOverride" 
-    chart-click="onClick">
-  </canvas>
+<div class="output-container">
+  <div class="chart-container">
+    <canvas width="850" height="380"
+      id="line" 
+      class="chart chart-line" 
+      chart-data="data"
+      chart-labels="dates" 
+      chart-series="company_symbols" 
+      chart-options="options"
+      chart-dataset-override="datasetOverride" 
+      chart-click="onClick">
+    </canvas>
+  </div>
+  <div class="table-container">
+    <table>
+        <tr>
+            <th class="symbol-column">Symbol</th>
+            <th class="desc-column">Description</th>
+            <th class="date-column">Latest Date</th>
+            <th class="date-column">Price</th>
+            <th class="remove-column">Remove</th>
+        </tr>
+        <tr ng-repeat="packet in packets">
+            <td class="symbol-column">{{packet.symbol}}</td>
+            <td class="desc-column">{{packet.description}}</td>
+            <td class="date-column">{{packet.newest_available_date | date : 'MM-d-yyyy'}}</td>
+            <td class="price-column">{{packet.price_data[0][1]}}</td>
+            <td class="remove-column"><i class="material-icons delete" ng-click="removeData(packet.symbol)">delete</i></td>
+        </tr>
+    </table>
+  </div>
 </div>
-
-
-<table>
-    <tr>
-        <th class="symbol-column">Symbol</th>
-        <th class="desc-column">Description</th>
-        <th class="date-column">Latest Date</th>
-    </tr>
-    <tr ng-repeat="packet in packets">
-        <td class="symbol-column">{{packet.symbol}}</td>
-        <td class="desc-column">{{packet.description}}</td>
-        <td class="date-column">{{packet.newest_available_date | date : 'MM-d-yyyy'}}</td>
-    </tr>
-</table>
 

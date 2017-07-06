@@ -21,10 +21,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "AGGREKO"
       },
       {
-        "symbol" : "AMEC.L",
-        "company_name" : "AMEC"
-      },
-      {
         "symbol" : "ANTO.L",
         "company_name" : "ANTOFAGASTA"
       },

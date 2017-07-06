@@ -17,7 +17,8 @@ stockTrackerApp.controller('MainController',
     $scope.timescaleSelected = 'oneYear'; 
     $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
 
-    $scope.getStockData = (symbol) => {
+    $scope.getStockData = (company) => {
+      const symbol = company.split('[')[1].slice(0, -1); 
       stockDataService.getTimeSeriesData(symbol)
         .then(newPacket => {
           if (newPacket) {
@@ -60,7 +61,7 @@ stockTrackerApp.controller('MainController',
       }); 
     }
 
-    $scope.removeSymbol = (symbol) => {
+    $scope.removeData = (symbol) => {
       $scope.packets.forEach((packet, index) => {
         if (packet.symbol === symbol) {
           [$scope.packets, $scope.dates, $scope.company_symbols, $scope.data].forEach(array => array.splice(index, 1));

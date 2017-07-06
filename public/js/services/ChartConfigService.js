@@ -4,6 +4,10 @@ stockTrackerApp.factory('chartConfigService', function() {
     layout: {
       padding: 20
     },
+    title: {
+    display: true,
+    text: 'FTSE 100'
+  },
     responsive: false,
     elements: {
       line: {
