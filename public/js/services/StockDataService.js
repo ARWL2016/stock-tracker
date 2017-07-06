@@ -10,7 +10,7 @@ stockTrackerApp.factory('stockDataService', function($http) {
       oldest_available_date: dataset.oldest_available_date, 
       price_data: dataset.data
     }; 
-  }
+  };
 
   return {
     getTimeSeriesData (query) {

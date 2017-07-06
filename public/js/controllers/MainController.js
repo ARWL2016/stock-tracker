@@ -2,9 +2,9 @@
 
 stockTrackerApp.controller('MainController',
 
-  function MainController($scope, stockDataService, chartConfigService, _) {
-    $scope.symbol = '';
-
+  function MainController($scope, stockDataService, chartConfigService, symbolService) {
+    $scope.symbolInput = '';
+    $scope.companyIndex = symbolService.index;
     // active data repository
     $scope.packets = [];
 
@@ -22,7 +22,7 @@ stockTrackerApp.controller('MainController',
         .then(newPacket => {
           if (newPacket) {
             console.log('newPacket: ', newPacket);
-            $scope.symbol = '';
+            $scope.symbolInput = '';
 
             // remove duplicate packets 
             $scope.packets = $scope.packets.filter(packet => packet.symbol !== newPacket.symbol);

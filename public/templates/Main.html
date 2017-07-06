@@ -1,6 +1,11 @@
-<form class="search-form" ng-submit="getStockData(symbol)">
+<form class="search-form" ng-submit="getStockData(symbolInput)">
     <p>Enter a stock symbol or company name</p>
-    <input type="search" ng-model="symbol" class="search-input" placeholder=" search stock by symbol" />
+    <input type="search" ng-model="symbolInput" list="symbol-list" class="search-input" placeholder=" search stock by symbol" />
+
+    <datalist id="symbol-list"> 
+      <option ng-repeat="company in companyIndex" value="{{company.symbol}}">
+    </datalist>
+
     <button class="search-btn"><b>Search</b></button>
     <select name="select" class="select-input" ng-model="timescaleSelected" ng-change="changeTimescale()"> 
       <option value="threeMonths">3 months</option> 
@@ -40,3 +45,4 @@
         <td class="date-column">{{packet.newest_available_date | date : 'MM-d-yyyy'}}</td>
     </tr>
 </table>
+
