@@ -9,11 +9,12 @@ stockTrackerApp.controller('MainController',
     $scope.packets = [];
 
     // chart data 
-    $scope.labels = []; // x-axis dates 
-    $scope.series = []; // stores a title for each data series 
+    $scope.dates = []; // x-axis 
+    $scope.company_symbols = []; // stores a title for each data series 
     $scope.data = [ ]; // stores an array for each data series
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    $scope.options = chartConfigService.returnOptions();
+    $scope.options = chartConfigService.options;
+    $scope.timescale = chartConfigService.timescale;
     
     $scope.getStockData = (symbol) => {
       stockDataService.getTimeSeriesData(symbol)
@@ -26,31 +27,43 @@ stockTrackerApp.controller('MainController',
             $scope.packets = $scope.packets.filter(packet => packet.symbol !== newPacket.symbol);
             $scope.packets.push(newPacket);
 
-            $scope.renderPacketToChart(newPacket); 
+            $scope.renderChart(); 
           }
         })
     };
 
-    $scope.renderPacketToChart = (newPacket) => {
-      const labelsArray = [];
-      const dataArray = [];
-      let seriesLength = 100;
+    $scope.renderChart = () => {
+      $scope.company_symbols = [];
+      $scope.data = [];
+      $scope.dates = [];
 
-      newPacket.price_data.forEach((price, index) => {
-        if (index < seriesLength) {
-          dataArray.unshift(price[1]);
-          labelsArray.unshift(price[0]);
-        }
+      let datesArray = [];
+      let dataArray = [];
+      let divisor = 4
+      let seriesLength = 260;
+
+      $scope.packets.forEach((packet, packetIndex) => {
+        packet.price_data.forEach((price, priceIndex) => {
+          if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
+            dataArray.unshift(price[1]);
+            if (packetIndex === 0) {
+              datesArray.unshift(price[0]);
+            }
+          }
+        }); 
+        $scope.data.push(dataArray); 
+        dataArray = []; 
+        $scope.dates = datesArray; 
+
+      $scope.company_symbols.push(packet.symbol);  
       }); 
-      $scope.data.push(dataArray);
-      $scope.labels = labelsArray;
-      $scope.series.push(newPacket.symbol);    
+       
     }
 
     $scope.removeSymbol = (symbol) => {
       $scope.packets.forEach((packet, index) => {
         if (packet.symbol === symbol) {
-          [$scope.packets, $scope.labels, $scope.series, $scope.data].forEach(array => array.splice(index, 1));
+          [$scope.packets, $scope.dates, $scope.company_symbols, $scope.data].forEach(array => array.splice(index, 1));
         }
       });
     };
