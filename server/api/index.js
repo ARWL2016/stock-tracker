@@ -14,7 +14,7 @@ function updateData() {
   var singleRequestID = setInterval(function() {
     dataset_code = symbols[count];
     count++;
-    if (count > 75) {
+    if (count >= symbols.length) {
       clearInterval(singleRequestID);
     }
     console.log(dataset_code);
@@ -30,7 +30,9 @@ function updateData() {
         var inserts = [dataset_code, body, 'false', body, 'true'];
         sql = mysql.format(sql, inserts);
         connection.query(sql, (error, results, fields) => {
-          if (error) throw error;
+          if (error) {
+            console.log(error);
+          };
         });  
       }
     }); 

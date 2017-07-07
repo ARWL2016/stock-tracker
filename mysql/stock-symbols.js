@@ -24,7 +24,7 @@ module.exports = [
         "company_name" : "BRIT AMER TOBACCO"
       },
       {
-        "symbol" : "BG_.L",
+        "symbol" : "BG .L",
         "company_name" : "BG GROUP"
       },
       {
@@ -42,10 +42,6 @@ module.exports = [
       {
         "symbol" : "BSY.L",
         "company_name" : "B SKY B GROUP"
-      },
-      {
-        "symbol" : "BT-A.L",
-        "company_name" : "BT GROUP"
       },
       {
         "symbol" : "CCL.L",

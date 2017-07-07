@@ -25,7 +25,7 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "BRIT AMER TOBACCO"
       },
       {
-        "symbol" : "BG_.L",
+        "symbol" : "BG .L",
         "company_name" : "BG GROUP"
       },
       {
@@ -43,10 +43,6 @@ stockTrackerApp.factory('symbolService', function() {
       {
         "symbol" : "BSY.L",
         "company_name" : "B SKY B GROUP"
-      },
-      {
-        "symbol" : "BT-A.L",
-        "company_name" : "BT GROUP"
       },
       {
         "symbol" : "CCL.L",
