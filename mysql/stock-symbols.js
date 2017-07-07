@@ -24,10 +24,6 @@ module.exports = [
         "company_name" : "BRIT AMER TOBACCO"
       },
       {
-        "symbol" : "BG .L",
-        "company_name" : "BG GROUP"
-      },
-      {
         "symbol" : "BLT.L",
         "company_name" : "BHP BILLITON"
       },
