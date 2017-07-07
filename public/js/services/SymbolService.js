@@ -5,34 +5,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "ANGLO AMERICAN"
       },
       {
-        "symbol" : "ABF.L",
-        "company_name" : "ASSOCIAT BRIT FOODS"
-      },
-      {
-        "symbol" : "ADM.L",
-        "company_name" : "ADMIRAL GROUP"
-      },
-      {
-        "symbol" : "ADN.L",
-        "company_name" : "ABERDEEN ASSET MGMT"
-      },
-      {
-        "symbol" : "AGK.L",
-        "company_name" : "AGGREKO"
-      },
-      {
-        "symbol" : "ANTO.L",
-        "company_name" : "ANTOFAGASTA"
-      },
-      // {
-      //   "symbol" : "ARM.L",
-      //   "company_name" : "ARM HOLDINGS"
-      // },
-      {
-        "symbol" : "ASHM.L",
-        "company_name" : "ASHMORE GRP"
-      },
-      {
         "symbol" : "AV.L",
         "company_name" : "AVIVA"
       },
@@ -57,16 +29,8 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "BG GROUP"
       },
       {
-        "symbol" : "BLND.L",
-        "company_name" : "BRIT LAND CO REIT"
-      },
-      {
         "symbol" : "BLT.L",
         "company_name" : "BHP BILLITON"
-      },
-      {
-        "symbol" : "BNZL.L",
-        "company_name" : "BUNZL"
       },
       {
         "symbol" : "BP.L",
@@ -101,18 +65,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "CAPITA"
       },
       {
-        "symbol" : "CRDA.L",
-        "company_name" : "CRODA INTL PLC"
-      },
-      {
-        "symbol" : "CRH.L",
-        "company_name" : "CRH PLC"
-      },
-      {
-        "symbol" : "CSCG.L",
-        "company_name" : "CAP SHOP CENTRES"
-      },
-      {
         "symbol" : "DGE.L",
         "company_name" : "DIAGEO"
       },
@@ -121,28 +73,12 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "MAN GROUP"
       },
       {
-        "symbol" : "ENRC.L",
-        "company_name" : "EURASIAN NATURAL"
-      },
-      {
-        "symbol" : "EVR.L",
-        "company_name" : "EVRAZ"
-      },
-      {
         "symbol" : "EXPN.L",
         "company_name" : "EXPERIAN"
       },
       {
-        "symbol" : "FRES.L",
-        "company_name" : "FRESNILLO"
-      },
-      {
         "symbol" : "GFS.L",
         "company_name" : "G4S"
-      },
-      {
-        "symbol" : "GKN.L",
-        "company_name" : "GKN"
       },
       {
         "symbol" : "GLEN.L",
@@ -157,10 +93,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "HARGREAVES LANS"
       },
       {
-        "symbol" : "HMSO.L",
-        "company_name" : "HAMMERSON REIT"
-      },
-      {
         "symbol" : "HSBA.L",
         "company_name" : "HSBC HLDG"
       },
@@ -169,24 +101,12 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "INTL. CONS. AIR GRP"
       },
       {
-        "symbol" : "IAP.L",
-        "company_name" : "ICAP"
-      },
-      {
         "symbol" : "IHG.L",
         "company_name" : "INTERCONT HOTELS"
       },
       {
-        "symbol" : "IMI.L",
-        "company_name" : "IMI PLC"
-      },
-      {
         "symbol" : "IMT.L",
         "company_name" : "IMPERIAL TOBACCO"
-      },
-      {
-        "symbol" : "IPR.L",
-        "company_name" : "INTERNATIONAL POWER"
       },
       {
         "symbol" : "ITRK.L",
@@ -195,10 +115,6 @@ stockTrackerApp.factory('symbolService', function() {
       {
         "symbol" : "ITV.L",
         "company_name" : "ITV"
-      },
-      {
-        "symbol" : "JMAT.L",
-        "company_name" : "JOHNSON MATTHEY PLC"
       },
       {
         "symbol" : "KAZ.L",
@@ -249,20 +165,12 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "PETROFAC"
       },
       {
-        "symbol" : "POLY.L",
-        "company_name" : "POLYMETAL INTL"
-      },
-      {
         "symbol" : "PRU.L",
         "company_name" : "PRUDENTIAL"
       },
       {
         "symbol" : "PSON.L",
         "company_name" : "PEARSON"
-      },
-      {
-        "symbol" : "RB.L",
-        "company_name" : "RECKITT BENCK GRP"
       },
       {
         "symbol" : "RBS.L",
@@ -275,10 +183,6 @@ stockTrackerApp.factory('symbolService', function() {
       {
         "symbol" : "REL.L",
         "company_name" : "REED ELSEVIER PLC"
-      },
-      {
-        "symbol" : "REX.L",
-        "company_name" : "REXAM"
       },
       {
         "symbol" : "RIO.L",
@@ -295,10 +199,6 @@ stockTrackerApp.factory('symbolService', function() {
       {
         "symbol" : "RSA.L",
         "company_name" : "RSA INSUR GRP"
-      },
-      {
-        "symbol" : "RSL.L",
-        "company_name" : "RESOLUTION NPV"
       },
       {
         "symbol" : "SAB.L",
@@ -321,10 +221,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "SAGE GRP"
       },
       {
-        "symbol" : "SHP.L",
-        "company_name" : "SHIRE"
-      },
-      {
         "symbol" : "SL.L",
         "company_name" : "STANDARD LIFE"
       },
@@ -333,16 +229,8 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "SMITHS GROUP"
       },
       {
-        "symbol" : "SN.L",
-        "company_name" : "SMITH & NEPHEW"
-      },
-      {
         "symbol" : "SRP.L",
         "company_name" : "SERCO GROUP"
-      },
-      {
-        "symbol" : "SSE.L",
-        "company_name" : "SSE"
       },
       {
         "symbol" : "STAN.L",
@@ -357,10 +245,6 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "TATE & LYLE"
       },
       {
-        "symbol" : "TLW.L",
-        "company_name" : "TULLOW OIL"
-      },
-      {
         "symbol" : "TSCO.L",
         "company_name" : "TESCO PLC"
       },
@@ -369,24 +253,12 @@ stockTrackerApp.factory('symbolService', function() {
         "company_name" : "UNILEVER"
       },
       {
-        "symbol" : "UU.L",
-        "company_name" : "UNITED UTILITIES GR"
-      },
-      {
         "symbol" : "VED.L",
         "company_name" : "VEDANTA RESOURCES"
       },
       {
         "symbol" : "VOD.L",
         "company_name" : "VODAFONE GRP"
-      },
-      {
-        "symbol" : "WEIR.L",
-        "company_name" : "WEIR GROUP"
-      },
-      {
-        "symbol" : "WOS.L",
-        "company_name" : "WOLSELEY"
       },
       {
         "symbol" : "WPP.L",

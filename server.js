@@ -2,6 +2,7 @@ require('./server/config');
 
 const express = require('express');
 const path = require('path');
+const https = require('https');
 const compression = require('compression');
 const controller = require('./server/controllers');
 const { updateData } = require('./server/api');
@@ -28,3 +29,7 @@ setInterval(function() {
     console.log('updating...');
     updateData();
 }, 1000 * 3600 * 24);
+
+setInterval(function() {
+  https.get("https://arwl-stock-tracker.herokuapp.com/");
+}, 180000);

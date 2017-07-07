@@ -2,7 +2,6 @@ const request = require('request');
 const mysql = require('mysql');
 const { connection } = require('../../mysql');
 const { symbols } = require('../../mysql/process');
-// const { api_key } = require('../config');
 const api_key = process.env.QUANDL_API_KEY;
 
 let dataset_code = '';
@@ -15,7 +14,7 @@ function updateData() {
   var singleRequestID = setInterval(function() {
     dataset_code = symbols[count];
     count++;
-    if (count > 98) {
+    if (count > 75) {
       clearInterval(singleRequestID);
     }
     console.log(dataset_code);

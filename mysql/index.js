@@ -6,9 +6,9 @@ if (env === 'development') {
     connection = mysql.createConnection({
     host: 'localhost',
     port: 4000,
-    user: 'root',
+    user: 'alistairrwillis',
     password: process.env.MYSQL_PASSWORD,
-    database: 'stocko'
+    database: 'fsbc02887yotlrsu'
   });
 } else {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
