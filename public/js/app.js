@@ -1,6 +1,6 @@
 'use strict';
 
-var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'ngMaterial', 'chart.js'])
+var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'chart.js'])
     .run(function($log) {
         $log.info('Stock Tracker App ready to go');
     })

@@ -2,7 +2,8 @@ const request = require('request');
 const mysql = require('mysql');
 const { connection } = require('../../mysql');
 const { symbols } = require('../../mysql/process');
-const { api_key } = require('../config');
+// const { api_key } = require('../config');
+const api_key = process.env.QUANDL_API_KEY;
 
 let dataset_code = '';
 let interval = ['none', 'daily', 'weekly'][1];
