@@ -1,5 +1,4 @@
-const env = process.env.NODE_ENV || 'development';
-
+let env = process.env.NODE_ENV || 'development';
 
 if (env === 'development') {
   const config = require('./development.json');
@@ -8,6 +7,7 @@ if (env === 'development') {
 
   console.log('ENV: ', env);
   console.log('config:', config);
+  console.log(process.env.MYSQL_PASSWORD);
 }
 
 

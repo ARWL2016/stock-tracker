@@ -84,7 +84,7 @@ module.exports = [
 		"company_name" : "B SKY B GROUP"
 	},
 	{
-		"symbol" : "BT-A.L",
+		"symbol" : "BT.A.L",
 		"company_name" : "BT GROUP"
 	},
 	{
