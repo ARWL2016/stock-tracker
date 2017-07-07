@@ -24,7 +24,7 @@ app.listen(port, () => {
     console.log('listening on port:', port);
 });
 
-// updateData();
+updateData();
 setInterval(function() {
     console.log('updating...');
     updateData();
