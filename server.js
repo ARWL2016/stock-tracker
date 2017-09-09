@@ -30,6 +30,6 @@ setInterval(function() {
     updateData();
 }, 1000 * 3600 * 24);
 
-setInterval(function() {
-  https.get("https://arwl-stock-tracker.herokuapp.com/");
-}, 180000);
+// setInterval(function() {
+//   https.get("https://arwl-stock-tracker.herokuapp.com/");
+// }, 180000);
