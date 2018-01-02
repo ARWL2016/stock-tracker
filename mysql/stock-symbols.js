@@ -1,3 +1,9 @@
+'use strict'
+
+/**
+ *  Hard coded list of all companies searchable by this app.
+ */
+
 module.exports = [
       {
         "symbol" : "AAL.L",

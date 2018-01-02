@@ -5,7 +5,9 @@ var stockTrackerApp = angular.module('stockTrackerApp', ['ngRoute', 'chart.js'])
         $log.info('Stock Tracker App ready to go');
     })
     .config(function($routeProvider, $locationProvider) {
-        $routeProvider.when('/main', {
+      // no routes as yet
+        $routeProvider
+          .when('/main', {
             templateUrl: 'templates/Main.html',
             controller: 'MainController'
         });

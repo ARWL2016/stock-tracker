@@ -1,7 +1,17 @@
+'use strict' 
+
+/**
+ *  Create the mysql connection in development (local) or production mode (cloud).
+ *  Attempt to connect. Log error or connection config data. 
+ *  Export connection. 
+ */
+
 const mysql = require('mysql');
 
-var env = process.env.NODE_ENV || 'development', connection;
+const env = process.env.NODE_ENV || 'development';
+let connection;
 
+// configure the connection
 if (env === 'development') {
     connection = mysql.createConnection({
     host: 'localhost',
@@ -14,15 +24,13 @@ if (env === 'development') {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 }
 
-connection.connect((err) => {
+connection.connect(err => {
     if (err) {
-        console.log('error connecting: ' + err.stack);
+        console.log(`error connecting: ${err.stack}`);
         return;
     }
 
-    console.log(`connected to ${connection.config.host}:${connection.config.port} with ID: ${connection.threadId}`);
+    console.log(`database: connected to local MYSQL instance at ${connection.config.host}:${connection.config.port} with ID: ${connection.threadId}`);
 });
 
-module.exports = {
-    connection
-}
+module.exports = { connection };

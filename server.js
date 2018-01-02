@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const https = require('https');
 const compression = require('compression');
+
 const controller = require('./server/controllers');
 const { updateData } = require('./server/api');
 
@@ -24,12 +25,15 @@ app.listen(port, () => {
     console.log('listening on port:', port);
 });
 
-updateData();
-setInterval(function() {
+// the updateData method will collect today's stock data from the API and store in MYSQL 
+// perform this in production once when the app is mounted, then once a day
+if (process.env.NODE_ENV !== 'development') {
+  updateData();
+  setInterval(function() {
     console.log('updating...');
     updateData();
 }, 1000 * 3600 * 24);
+}
 
-// setInterval(function() {
-//   https.get("https://arwl-stock-tracker.herokuapp.com/");
-// }, 180000);
+
+

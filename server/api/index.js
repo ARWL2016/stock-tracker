@@ -1,5 +1,8 @@
+'use strict'
+
 const request = require('request');
 const mysql = require('mysql');
+
 const { connection } = require('../../mysql');
 const { symbols } = require('../../mysql/process');
 const api_key = process.env.QUANDL_API_KEY;
