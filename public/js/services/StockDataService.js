@@ -1,4 +1,4 @@
-stockTrackerApp.factory('stockDataService', function($http) {
+app.factory('stockDataService', function($http) {
 
   // package data for the controller 
   const createPacket = (data) => {

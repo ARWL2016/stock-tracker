@@ -1,4 +1,4 @@
-stockTrackerApp.factory('chartConfigService', function() {
+app.factory('chartConfigService', function() {
 
   const options = {
     layout: {

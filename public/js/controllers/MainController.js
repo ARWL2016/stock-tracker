@@ -1,6 +1,6 @@
 'use strict';
 
-stockTrackerApp.controller('MainController',
+app.controller('MainController',
 
   function MainController($scope, stockDataService, chartConfigService, symbolService) {
 

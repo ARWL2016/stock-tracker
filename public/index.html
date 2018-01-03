@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="stockTrackerApp">
+<html ng-app="app">
 
 <head>
     <base href="/" />
@@ -21,6 +21,8 @@
         <div class="navbar-container">
             <ul class="navbar-menu">
                 <li class="logo"><b>FTSE 100 STOCK TRACKER</b></li>
+                <li><a href="/home"><b>HOME</b></a></li>
+                <li><a href="/about"><b>ABOUT</b></a></li>
             </ul>
         </div>
     </div>
@@ -39,6 +41,9 @@
     <!-- Application Code -->
     <script src="/js/app.js"></script>
     <script src="/js/controllers/MainController.js"></script>
+    <script src="/js/controllers/AboutController.js"></script>
+
+    <!-- Services -->
     <script src="/js/services/StockDataService.js"></script>
     <script src="/js/services/ChartConfigService.js"></script>
     <script src="/js/services/SymbolService.js"></script>

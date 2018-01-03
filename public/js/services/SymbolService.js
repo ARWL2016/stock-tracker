@@ -1,4 +1,4 @@
-stockTrackerApp.factory('symbolService', function() {
+app.factory('symbolService', function() {
     const companies = [
       {
         "symbol" : "AAL.L",
