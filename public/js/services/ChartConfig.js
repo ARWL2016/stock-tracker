@@ -17,7 +17,7 @@
         display: true,
         text: 'London Stock Exchange FTSE 100'
       },
-      responsive: false,
+      responsive: true,
       elements: {
         line: {
           tension: 1
