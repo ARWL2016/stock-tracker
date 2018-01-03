@@ -1,14 +1,14 @@
 (function(){
 
   angular.module('app')
-    .controller('MainController', ['stockDataService','chartConfigService','symbolService', '$log', MainController]);
+    .controller('MainController', ['stockDataService','chartConfig','symbolService', MainController]);
 
-  function MainController(stockDataService, chartConfigService, symbolService, $log) {
+  function MainController(stockDataService, chartConfig, symbolService, $log) {
 
     var vm = this;
 
     vm.symbolInput = '';
-    vm.companyIndex = symbolService.index;
+    vm.companyIndex = symbolService.index();
     // active data repository
     vm.packets = [];
 
@@ -17,16 +17,22 @@
     vm.company_symbols = []; // stores the legend for each data series 
     vm.data = []; // stores an array for each data series
     vm.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    vm.options = chartConfigService.options;
+    vm.options = chartConfig.OPTIONS;
     vm.timescaleSelected = 'fiveYears'; 
-    vm.timescale = chartConfigService.timescale[vm.timescaleSelected];
+    vm.timescale = chartConfig.TIMESCALE[vm.timescaleSelected];
 
-    vm.getStockData = (company) => {
-      var symbol = company.split('[')[1].slice(0, -1); 
-      stockDataService.getTimeSeriesData(symbol)
-        .then(newPacket => {
+    vm.error = '';
+
+    function init() {
+      vm.getStockData('ASTRAZENECA [AZN]');
+    };
+
+    vm.getStockData = function(company) {
+      vm.error = '';
+      stockDataService.getTimeSeriesData(company)
+        .then(function(newPacket) {
           if (newPacket) {
-            $log.debug('newPacket: ', newPacket);
+            console.log('newPacket: ', newPacket);
             vm.symbolInput = '';
 
             // remove duplicate packets 
@@ -36,9 +42,12 @@
             vm.renderChart(); 
           }
         })
+        .catch(function(err) {
+          vm.error = 'Sorry, data not available';
+        });
     };
 
-    vm.renderChart = () => {
+    vm.renderChart = function() {
       vm.company_symbols = [];
       vm.data = [];
       vm.dates = [];
@@ -67,7 +76,7 @@
       }); 
     }
 
-    vm.removeData = (symbol) => {
+    vm.removeData = function (symbol) {
       vm.packets.forEach((packet, index) => {
         if (packet.symbol === symbol) {
           [vm.packets, vm.dates, vm.company_symbols, vm.data].forEach(array => array.splice(index, 1));
@@ -75,17 +84,15 @@
       });
     };
 
-    vm.changeTimescale = () => {
-      console.log('change', vm.timescaleSelected);
-      vm.timescale = chartConfigService.timescale[vm.timescaleSelected];
+    vm.changeTimescale = function() {
+      console.log('change' + vm.timescaleSelected);
+      vm.timescale = chartConfig.TIMESCALE[vm.timescaleSelected];
       vm.renderChart();
     }
 
-    var init = () => {
-      vm.getStockData('HSBC HLDG [HSBA]');
-    };
-    init(); 
-    console.log({vm});
+    
+    init();
+
 
   }
 

@@ -1,7 +1,9 @@
 ### Stock Tracker
 
+#### Useful Links 
 https://www.freecodecamp.com/challenges/chart-the-stock-market   
 https://docs.quandl.com/docs/parameters-2 
+http://jtblin.github.io/angular-chart.js/ 
 
 #### To Do  
 - add IIFEs and strict mode
@@ -14,6 +16,11 @@ https://docs.quandl.com/docs/parameters-2
 - node 8.9.3 
 - express 4.15.3
 - mysql 2/13
+- chartjs 2.6.0 (CDN)
+- angular-chart.js (CDN) 
+
+#### Notes 
+- as the front end Javascript is not transpiled, ES6 features are avoided to keep it compatible with older browsers
 
 #### Run this App in Development
 - clone repo 

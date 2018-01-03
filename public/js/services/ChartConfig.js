@@ -1,16 +1,22 @@
+/**
+ *  Contains configuration properties for the line chart. 
+ *  http://jtblin.github.io/angular-chart.js/
+ *  
+ */
+
 (function(){
 
   angular.module('app')
-    .factory('chartConfigService', function() {
+    .constant('chartConfig', {
 
-    var options = {
+    OPTIONS: {
       layout: {
         padding: 20
       },
       title: {
-      display: true,
-      text: 'London Stock Exchange FTSE 100'
-    },
+        display: true,
+        text: 'London Stock Exchange FTSE 100'
+      },
       responsive: false,
       elements: {
         line: {
@@ -38,9 +44,9 @@
           }
         ]
       }
-    };
+    },
     
-    var timescale = {
+    TIMESCALE: {
       threeMonths: {
         divisor: 1, 
         seriesLength: 65, 
@@ -67,7 +73,7 @@
         label: '5yrs'
       }
     }
-    return { timescale, options };
+
   });
 
 }());

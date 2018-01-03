@@ -16,7 +16,8 @@ function fetchPricesBySymbol(req, res) {
       res.status(404); 
     }; 
     res.status(200).send(results); 
-  })
+
+  });
 
   
 }

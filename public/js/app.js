@@ -2,9 +2,8 @@
 
   var app = angular.module('app', ['ngRoute', 'chart.js']);
 
-      app.config(['$logProvider', '$routeProvider', '$locationProvider', function($logProvider, $routeProvider, $locationProvider) {
-        $logProvider.debugEnabled(true);
-        
+      app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+       
         $routeProvider
             .when('/main', {
               templateUrl: '/templates/Main.html',
@@ -20,10 +19,10 @@
           $locationProvider.html5Mode(true);
       }]); 
 
-      app.run(function ($log) {
-        $log.debug('Stock Tracker App ready to go');
-      });
+      app.run([function () {
+        console.log('Stock Tracker App ready to go');
+      }]);
 
-}())
+}());
 
 

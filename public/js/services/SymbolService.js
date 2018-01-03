@@ -1,9 +1,16 @@
+/**
+ *  Contains a list of all companies and symbols available to the app
+ *  @function index() - returns the list with the '.X' suffix removed from the stock symbol
+ */
+
 (function(){
 
-  angular.module('app').factory('symbolService', [SymbolService]);
+  angular.module('app')
+    .factory('symbolService', [SymbolService]);
   
-  function SymbolService() {
-      const companies = [
+    function SymbolService() {
+
+      var companies = [
         {
           "symbol" : "AAL.L",
           "company_name" : "ANGLO AMERICAN"
@@ -262,17 +269,17 @@
         }
       ]; 
 
-      const index = companies.map(company => {
-        const orig = company.symbol;
-        return {
-          symbol: orig.slice(0, orig.length -2),
-          company_name: company.company_name
-        }
-          
+      function index() {
+        return companies.map(company => {
+          var orig = company.symbol;
+          return {
+            symbol: orig.slice(0, orig.length -2),
+            company_name: company.company_name
+          } 
         });
+      } 
 
-      return { index }
- 
-  }; 
+      return { index };
+    }; 
 
 }());
