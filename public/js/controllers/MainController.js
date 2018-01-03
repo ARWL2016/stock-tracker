@@ -1,87 +1,93 @@
-'use strict';
+(function(){
 
-app.controller('MainController',
+  angular.module('app')
+    .controller('MainController', ['stockDataService','chartConfigService','symbolService', '$log', MainController]);
 
-  function MainController($scope, stockDataService, chartConfigService, symbolService) {
+  function MainController(stockDataService, chartConfigService, symbolService, $log) {
 
-    $scope.symbolInput = '';
-    $scope.companyIndex = symbolService.index;
+    var vm = this;
+
+    vm.symbolInput = '';
+    vm.companyIndex = symbolService.index;
     // active data repository
-    $scope.packets = [];
+    vm.packets = [];
 
     // chart data 
-    $scope.dates = []; // x-axis 
-    $scope.company_symbols = []; // stores the legend for each data series 
-    $scope.data = []; // stores an array for each data series
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    $scope.options = chartConfigService.options;
-    $scope.timescaleSelected = 'fiveYears'; 
-    $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
+    vm.dates = []; // x-axis 
+    vm.company_symbols = []; // stores the legend for each data series 
+    vm.data = []; // stores an array for each data series
+    vm.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+    vm.options = chartConfigService.options;
+    vm.timescaleSelected = 'fiveYears'; 
+    vm.timescale = chartConfigService.timescale[vm.timescaleSelected];
 
-    $scope.getStockData = (company) => {
-      const symbol = company.split('[')[1].slice(0, -1); 
+    vm.getStockData = (company) => {
+      var symbol = company.split('[')[1].slice(0, -1); 
       stockDataService.getTimeSeriesData(symbol)
         .then(newPacket => {
           if (newPacket) {
-            console.log('newPacket: ', newPacket);
-            $scope.symbolInput = '';
+            $log.debug('newPacket: ', newPacket);
+            vm.symbolInput = '';
 
             // remove duplicate packets 
-            $scope.packets = $scope.packets.filter(packet => packet.symbol !== newPacket.symbol);
-            $scope.packets.push(newPacket);
+            vm.packets = vm.packets.filter(packet => packet.symbol !== newPacket.symbol);
+            vm.packets.push(newPacket);
 
-            $scope.renderChart(); 
+            vm.renderChart(); 
           }
         })
     };
 
-    $scope.renderChart = () => {
-      $scope.company_symbols = [];
-      $scope.data = [];
-      $scope.dates = [];
+    vm.renderChart = () => {
+      vm.company_symbols = [];
+      vm.data = [];
+      vm.dates = [];
 
-      let datesArray = [];
-      let dataArray = [];
-      let divisor = $scope.timescale.divisor; 
-      let seriesLength = $scope.timescale.seriesLength;
+      var datesArray = [];
+      var dataArray = [];
+      var divisor = vm.timescale.divisor; 
+      var seriesLength = vm.timescale.seriesLength;
 
-      $scope.packets.forEach((packet, packetIndex) => {
+      vm.packets.forEach((packet, packetIndex) => {
         packet.price_data.forEach((price, priceIndex) => {
           if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
             dataArray.unshift(price[1]);
             if (packetIndex === 0) {
               // remove the date when timescale is > 6 months 
-              const trimmedDate = divisor === 1 || divisor === 2 ? price[0] : price[0].slice(0, 7);
+              var trimmedDate = divisor === 1 || divisor === 2 ? price[0] : price[0].slice(0, 7);
               datesArray.unshift(trimmedDate);
             }
           }
         }); 
-        $scope.data.push(dataArray); 
+        vm.data.push(dataArray); 
         dataArray = []; 
-        $scope.dates = datesArray; 
+        vm.dates = datesArray; 
 
-      $scope.company_symbols.push(packet.symbol);  
+      vm.company_symbols.push(packet.symbol);  
       }); 
     }
 
-    $scope.removeData = (symbol) => {
-      $scope.packets.forEach((packet, index) => {
+    vm.removeData = (symbol) => {
+      vm.packets.forEach((packet, index) => {
         if (packet.symbol === symbol) {
-          [$scope.packets, $scope.dates, $scope.company_symbols, $scope.data].forEach(array => array.splice(index, 1));
+          [vm.packets, vm.dates, vm.company_symbols, vm.data].forEach(array => array.splice(index, 1));
         }
       });
     };
 
-    $scope.changeTimescale = () => {
-      console.log('change', $scope.timescaleSelected);
-      $scope.timescale = chartConfigService.timescale[$scope.timescaleSelected];
-      $scope.renderChart();
+    vm.changeTimescale = () => {
+      console.log('change', vm.timescaleSelected);
+      vm.timescale = chartConfigService.timescale[vm.timescaleSelected];
+      vm.renderChart();
     }
 
-    const init = () => {
-      $scope.getStockData('HSBC HLDG [HSBA]');
+    var init = () => {
+      vm.getStockData('HSBC HLDG [HSBA]');
     };
     init(); 
+    console.log({vm});
 
   }
-)
+
+
+}());

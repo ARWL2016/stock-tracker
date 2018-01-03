@@ -1,11 +1,14 @@
-'use strict'
+(function(){ 
 
-app.controller('AboutController', AboutController); 
+  angular.module('app')
+    .controller('AboutController', [ AboutController]); 
 
-function AboutController($scope) {
+  function AboutController() {
 
-  // var vm = this;
-  $scope.title = 'ABOUT PAGE';
-  console.log(this);
-}
+    var vm = this;
+    
+    vm.title = "ABOUT PAGE";
+  }
+
+}());
 

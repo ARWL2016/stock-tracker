@@ -1,4 +1,8 @@
-app.factory('stockDataService', function($http) {
+(function(){
+
+  angular.module('app').factory('stockDataService', StockDataService)
+    
+  function StockDataService($http) {
 
   // package data for the controller 
   const createPacket = (data) => {
@@ -25,4 +29,6 @@ app.factory('stockDataService', function($http) {
         .catch(err => console.log(err));
       },
     };
-});
+  };
+
+}());

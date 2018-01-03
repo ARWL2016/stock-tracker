@@ -1,12 +1,13 @@
+<!-- SEARCH FORM -->
 <div class="search-form-container">
-  <form class="search-form" ng-submit="getStockData(symbolInput)">
+  <form class="search-form" ng-submit="main.getStockData(main.symbolInput)">
       <p><b>Enter a stock symbol or company name to search.</b></p>
-      <input type="search" ng-model="symbolInput" list="symbol-list" class="search-input" />
+      <input type="search" ng-model="main.symbolInput" list="symbol-list" class="search-input" />
 
       <datalist id="symbol-list"> 
-        <option ng-repeat="company in companyIndex" value="{{company.company_name}} [{{company.symbol}}]">
+        <option ng-repeat="company in main.companyIndex" value="{{ company.company_name }} [{{ company.symbol }}]">
       </datalist>
-      <select name="select" class="select-input" ng-model="timescaleSelected" ng-change="changeTimescale()"> 
+      <select name="select" class="select-input" ng-model="main.timescaleSelected" ng-change="main.changeTimescale()"> 
         <option value="threeMonths">3 months</option> 
         <option value="sixMonths">6 months</option>
         <option value="oneYear">1 year</option>
@@ -19,38 +20,42 @@
         <li>Click on chart legend to toggle data.</li>
       </ul>
   </form>
-
 </div>
 
+
 <div class="output-container">
+  
+  <!-- CHART -->
   <div class="chart-container">
     <canvas width="850" height="380"
       id="line" 
       class="chart chart-line" 
-      chart-data="data"
-      chart-labels="dates" 
-      chart-series="company_symbols" 
-      chart-options="options"
-      chart-dataset-override="datasetOverride" 
+      chart-data="main.data"
+      chart-labels="main.dates" 
+      chart-series="main.company_symbols" 
+      chart-options="main.options"
+      chart-dataset-override="main.datasetOverride" 
       chart-click="onClick">
     </canvas>
   </div>
+  
+  <!-- TABLE -->
   <div class="table-container">
     <table>
-        <tr>
-            <th class="symbol-column">Symbol</th>
-            <th class="desc-column">Description</th>
-            <th class="date-column">Latest Date</th>
-            <th class="date-column">Price</th>
-            <th class="remove-column">Remove</th>
-        </tr>
-        <tr ng-repeat="packet in packets">
-            <td class="symbol-column">{{packet.symbol}}</td>
-            <td class="desc-column">{{packet.description}}</td>
-            <td class="date-column">{{packet.newest_available_date | date : 'MM-d-yyyy'}}</td>
-            <td class="price-column">{{packet.price_data[0][1]}}</td>
-            <td class="remove-column"><i class="material-icons delete" ng-click="removeData(packet.symbol)">delete</i></td>
-        </tr>
+      <tr>
+        <th class="symbol-column">Symbol</th>
+        <th class="desc-column">Description</th>
+        <th class="date-column">Latest Date</th>
+        <th class="date-column">Price</th>
+        <th class="remove-column">Remove</th>
+      </tr>
+      <tr ng-repeat="packet in main.packets">
+        <td class="symbol-column">{{ packet.symbol }}</td>
+        <td class="desc-column">{{ packet.description }}</td>
+        <td class="date-column">{{ packet.newest_available_date | date : 'MM-d-yyyy' }}</td>
+        <td class="price-column">{{ packet.price_data[0][1] }}</td>
+        <td class="remove-column"><i class="material-icons delete" ng-click="main.removeData(packet.symbol)">delete</i></td>
+      </tr>
     </table>
   </div>
 </div>
