@@ -2,6 +2,7 @@
 
 const mysql = require('mysql');
 const { connection } = require('../../mysql');
+const logger = require('../config/winston');
 
 function fetchPricesBySymbol(req, res) {
   const id = req.params.id;
@@ -12,7 +13,7 @@ function fetchPricesBySymbol(req, res) {
   sql = mysql.format(sql, inserts);
   connection.query(sql, (error, results, fields) => {
     if (error) {
-      console.log(error);
+      logger.info(error);
       res.status(404); 
     }; 
     res.status(200).send(results); 

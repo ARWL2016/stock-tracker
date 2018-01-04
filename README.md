@@ -6,8 +6,8 @@ https://docs.quandl.com/docs/parameters-2
 http://jtblin.github.io/angular-chart.js/ 
 
 #### To Do  
-- add IIFEs and strict mode
-- add error checking
+- switch off chart legend on small screen sizes
+
 
 #### Tech 
 - angular 1.6.4

@@ -28,7 +28,7 @@
   
   <!-- CHART -->
   <div class="chart-container">
-    <canvas width="850" height="380"
+    <canvas max-width="850" max-height="380"
       id="line" 
       class="chart chart-line" 
       chart-data="main.data"
@@ -47,7 +47,7 @@
         <th class="symbol-column">Symbol</th>
         <th class="desc-column">Description</th>
         <th class="date-column">Latest Date</th>
-        <th class="date-column">Price</th>
+        <th class="price-column">Price</th>
         <th class="remove-column">Remove</th>
       </tr>
       <tr ng-repeat="packet in main.packets">

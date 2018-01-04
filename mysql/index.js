@@ -7,6 +7,7 @@
  */
 
 const mysql = require('mysql');
+const logger = require('../server/config/winston');
 
 const env = process.env.NODE_ENV || 'development';
 let connection;
@@ -26,11 +27,11 @@ if (env === 'development') {
 
 connection.connect(err => {
     if (err) {
-        console.log(`error connecting: ${err.stack}`);
+        logger.info(`error connecting: ${err.stack}`);
         return;
     }
 
-    console.log(`database: connected to local MYSQL instance at ${connection.config.host}:${connection.config.port} with ID: ${connection.threadId}`);
+    logger.info(`database: connected to local MYSQL instance at ${connection.config.host}:${connection.config.port} with ID: ${connection.threadId}`);
 });
 
 module.exports = { connection };
