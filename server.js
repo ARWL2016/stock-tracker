@@ -1,4 +1,7 @@
-require('./server/config');
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+}
+// require('./server/config');
 
 const express = require('express');
 const path = require('path');

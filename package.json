@@ -15,11 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "compression": "1.6.2",
+    "dotenv": "4.0.0",
     "express": "4.15.3",
     "mysql": "2.13.0",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "winston": "2.4.0"
   },
   "devDependencies": {
     "cross-env": "5.1.3"
+    
   }
 }
