@@ -6,6 +6,7 @@ https://docs.quandl.com/docs/parameters-2
 http://jtblin.github.io/angular-chart.js/ 
 
 #### To Do  
+- add companies page
 - switch off chart legend on small screen sizes
 
 

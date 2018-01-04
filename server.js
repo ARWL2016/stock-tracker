@@ -18,11 +18,16 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'lib')));
+
 app.get('/data/:id', controller.fetchPricesBySymbol);
 
-// if angular app is not loaded, send back index.html on bad urls
-app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/main', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get(function(req, res) {
+    res.status(404).send();
 });
 
 app.listen(port, () => {
