@@ -1,24 +1,34 @@
+/**
+ *  @prop query - the user search input - selected from companyList
+ *  @prop companyList - options on the input 
+ *  @prop packets - object containing the name of a stock, its symbol, oldest and newest dates, and the whole data series
+ *  
+ */
+
 (function(){
 
   angular.module('app')
-    .controller('MainController', ['stockDataService','chartConfig','symbolService', MainController]);
+    .controller('MainController', ['stockDataService','chartConfig','symbolService', 'utilsService', MainController]);
 
-  function MainController(stockDataService, chartConfig, symbolService, $log) {
+  function MainController(dataSvc, chartConfig, symbolSvc, utils) {
 
     var vm = this;
 
-    vm.symbolInput = '';
-    vm.companyIndex = symbolService.index();
-    // active data repository
+    vm.query = '';
+    vm.companyList = symbolSvc.index();
+
+    // HTTP response data 
     vm.packets = [];
 
-    // chart data 
-    vm.dates = []; // x-axis 
-    vm.company_symbols = []; // stores the legend for each data series 
-    vm.data = []; // stores an array for each data series
+    // chart data (computed from packets)
+    vm.dates = [];
+    vm.legends = []; 
+    vm.data = []; 
+
+    // chart metadata
     vm.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    vm.options = chartConfig.OPTIONS;
     vm.timescaleSelected = 'fiveYears'; 
+    vm.options = chartConfig.OPTIONS;
     vm.timescale = chartConfig.TIMESCALE[vm.timescaleSelected];
 
     vm.error = '';
@@ -29,22 +39,11 @@
 
     vm.getStockData = function(company) {
       vm.error = '';
-      stockDataService.getTimeSeriesData(company)
+      dataSvc.getTimeSeriesData(company)
         .then(function(newPacket) {
-          if (newPacket) {
-            console.log('newPacket: ', newPacket);
-            vm.symbolInput = '';
-
-            // remove duplicate packets 
-            // vm.packets = vm.packets.filter(packet => packet.symbol !== newPacket.symbol);
-
-            vm.packets = vm.packets.filter(function(packet) {
-              return packet.symbol !== newPacket.symbol
-            });
-            vm.packets.push(newPacket);
-
-            vm.renderChart(); 
-          }
+          vm.query = '';
+          vm.packets = dataSvc.addNewPacket(newPacket, vm.packets);
+          vm.renderChart(); 
         })
         .catch(function(err) {
           vm.error = 'Sorry, data not available';
@@ -52,38 +51,49 @@
     };
 
     vm.renderChart = function() {
-      vm.company_symbols = [];
+      resetChartData();
+      var chartData = utils.renderChart(vm.timescale, vm.packets, vm.data, vm.dates, vm.legends);
+      vm.data = chartData.data; 
+      vm.dates = chartData.dates; 
+      vm.legends = chartData.legends; 
+
+      ///
+
+      // var datesArray = [];
+      // var dataArray = [];
+      // var divisor = vm.timescale.divisor; 
+      // var seriesLength = vm.timescale.seriesLength;
+
+      // vm.packets.forEach(function(packet, packetIndex) {
+
+      //   packet.price_data.forEach(function(price, priceIndex) {
+      //     if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
+      //       dataArray.unshift(price[1]);
+      //       if (packetIndex === 0) {
+      //         var trimmedDate = utils.trimDate(divisor, price[0]);
+      //         datesArray.unshift(trimmedDate);
+      //       }
+      //     }
+      //   }); 
+
+      //   vm.data.push(dataArray); 
+      //   dataArray = []; 
+      //   vm.dates = datesArray; 
+      //   vm.legends.push(packet.symbol);  
+      // }); 
+    }
+
+
+    resetChartData = function() {
       vm.data = [];
       vm.dates = [];
-
-      var datesArray = [];
-      var dataArray = [];
-      var divisor = vm.timescale.divisor; 
-      var seriesLength = vm.timescale.seriesLength;
-
-      vm.packets.forEach(function(packet, packetIndex) {
-        packet.price_data.forEach(function(price, priceIndex) {
-          if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
-            dataArray.unshift(price[1]);
-            if (packetIndex === 0) {
-              // remove the date when timescale is > 6 months 
-              var trimmedDate = divisor === 1 || divisor === 2 ? price[0] : price[0].slice(0, 7);
-              datesArray.unshift(trimmedDate);
-            }
-          }
-        }); 
-        vm.data.push(dataArray); 
-        dataArray = []; 
-        vm.dates = datesArray; 
-
-      vm.company_symbols.push(packet.symbol);  
-      }); 
+      vm.legends = [];
     }
 
     vm.removeData = function (symbol) {
       vm.packets.forEach(function(packet, index) {
         if (packet.symbol === symbol) {
-          [vm.packets, vm.dates, vm.company_symbols, vm.data].forEach(function (array) {
+          [vm.packets, vm.dates, vm.legends, vm.data].forEach(function(array) {
             array.splice(index, 1)
           });
         }
@@ -91,12 +101,10 @@
     };
 
     vm.changeTimescale = function() {
-      console.log('change' + vm.timescaleSelected);
       vm.timescale = chartConfig.TIMESCALE[vm.timescaleSelected];
       vm.renderChart();
     }
 
-    
     init();
 
 

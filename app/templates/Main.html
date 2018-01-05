@@ -1,11 +1,11 @@
 <!-- SEARCH FORM -->
 <div class="search-form-container">
-  <form class="search-form" ng-submit="main.getStockData(main.symbolInput)">
+  <form class="search-form" ng-submit="main.getStockData(main.query)">
       <p><b>Enter a stock symbol or company name to search.</b></p>
-      <input type="search" ng-model="main.symbolInput" list="symbol-list" class="search-input" />
+      <input type="search" ng-model="main.query" list="symbol-list" class="search-input" />
 
       <datalist id="symbol-list"> 
-        <option ng-repeat="company in main.companyIndex" value="{{ company.company_name }} [{{ company.symbol }}]">
+        <option ng-repeat="company in main.companyList" value="{{ company.company_name }} [{{ company.symbol }}]">
       </datalist>
       <select name="select" class="select-input" ng-model="main.timescaleSelected" ng-change="main.changeTimescale()"> 
         <option value="threeMonths">3 months</option> 
@@ -33,7 +33,7 @@
       class="chart chart-line" 
       chart-data="main.data"
       chart-labels="main.dates" 
-      chart-series="main.company_symbols" 
+      chart-series="main.legends" 
       chart-options="main.options"
       chart-dataset-override="main.datasetOverride" 
       chart-click="onClick">

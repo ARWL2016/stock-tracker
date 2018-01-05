@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
 app.use(compression());
 
 // serve framework code as cachable
-app.use(express.static(path.join(__dirname, 'static'), { maxAge: ms('1yr') }));
+app.use(express.static(path.join(__dirname, 'lib'), { maxAge: ms('1yr') }));
 
 // don't cache application code - in case of updates
 app.use((req, res, next) => {

@@ -7,7 +7,7 @@
 (function(){
 
   angular.module('app')
-    .factory('stockDataService', ['$http', StockDataService])
+    .factory('stockDataService', ['$http', StockDataService]);
     
   function StockDataService($http) {
 
@@ -27,17 +27,13 @@
       return company.split('[')[1].slice(0, -1); 
     }
 
-    // fetch data for single stock
+    // fetch data for single stock [PUBLIC]
     function getTimeSeriesData (company) {
       var symbol = extractSymbol(company);
       
-      return $http({
-        method: 'GET', 
-        url: 'data/' + symbol
-      })
+      return $http.get('data/' + symbol)
         .then(function(response) {
           var data = JSON.parse(response.data[0].data_string);
-          console.log('http call resolved with this: ', data);
           return createPacket(data);
         })
         .catch(function(err) {
@@ -46,7 +42,19 @@
         });
       };
 
-      return { getTimeSeriesData: getTimeSeriesData };
+      // remove packet from array if it is being added again [PUBLIC]
+      function addNewPacket(newPacket, packets) {
+        packets = packets.filter(function(packet) {
+          return packet.symbol !== newPacket.symbol;
+        }); 
+        packets.push(newPacket);
+        return packets;
+      }
+
+      return { 
+        getTimeSeriesData: getTimeSeriesData, 
+        addNewPacket: addNewPacket 
+      };
   };
 
 }());
