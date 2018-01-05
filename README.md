@@ -7,7 +7,7 @@ http://jtblin.github.io/angular-chart.js/
 
 #### To Do  
 - add companies page
-- switch off chart legend on small screen sizes
+- switch off chart legend on small screen sizes - chart render on mobile is unreadable
 
 
 #### Tech 

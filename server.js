@@ -16,13 +16,20 @@ const app = express();
 const port = process.env.PORT || 3000; 
 app.use(compression());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// serve framework code as cachable
+app.use(express.static(path.join(__dirname, 'static'), { maxAge: ms('1yr') }));
 
+// don't cache application code - in case of updates
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+})
+app.use(express.static(path.join(__dirname, 'app')));
 
 app.get('/data/:id', controller.fetchPricesBySymbol);
 
 app.get('/main', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get(function(req, res) {

@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "cross-env NODE_ENV=development nodemon server.js"
+    "dev": "cross-env NODE_ENV=development nodemon server.js", 
+    "kill": "taskkill /f /im node.exe"
   },
   "author": "Alistair Willis",
   "license": "ISC",
@@ -23,6 +24,5 @@
   },
   "devDependencies": {
     "cross-env": "5.1.3"
-    
   }
 }
