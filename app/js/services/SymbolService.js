@@ -270,7 +270,7 @@
       ]; 
 
       function index() {
-        return companies.map(company => {
+        return companies.map(function(company) {
           var orig = company.symbol;
           return {
             symbol: orig.slice(0, orig.length -2),
@@ -279,7 +279,7 @@
         });
       } 
 
-      return { index };
+      return { index: index };
     }; 
 
 }());

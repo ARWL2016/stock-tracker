@@ -13,7 +13,7 @@
 
     // package data for the controller [private]
     function createPacket (data) {
-      var { dataset } = data; 
+      var dataset = data.dataset; 
       return { 
         symbol: dataset.dataset_code,
         description: dataset.name,
@@ -46,7 +46,7 @@
         });
       };
 
-      return { getTimeSeriesData };
+      return { getTimeSeriesData: getTimeSeriesData };
   };
 
 }());

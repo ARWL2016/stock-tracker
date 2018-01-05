@@ -36,7 +36,11 @@
             vm.symbolInput = '';
 
             // remove duplicate packets 
-            vm.packets = vm.packets.filter(packet => packet.symbol !== newPacket.symbol);
+            // vm.packets = vm.packets.filter(packet => packet.symbol !== newPacket.symbol);
+
+            vm.packets = vm.packets.filter(function(packet) {
+              return packet.symbol !== newPacket.symbol
+            });
             vm.packets.push(newPacket);
 
             vm.renderChart(); 
@@ -57,8 +61,8 @@
       var divisor = vm.timescale.divisor; 
       var seriesLength = vm.timescale.seriesLength;
 
-      vm.packets.forEach((packet, packetIndex) => {
-        packet.price_data.forEach((price, priceIndex) => {
+      vm.packets.forEach(function(packet, packetIndex) {
+        packet.price_data.forEach(function(price, priceIndex) {
           if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
             dataArray.unshift(price[1]);
             if (packetIndex === 0) {
@@ -77,9 +81,11 @@
     }
 
     vm.removeData = function (symbol) {
-      vm.packets.forEach((packet, index) => {
+      vm.packets.forEach(function(packet, index) {
         if (packet.symbol === symbol) {
-          [vm.packets, vm.dates, vm.company_symbols, vm.data].forEach(array => array.splice(index, 1));
+          [vm.packets, vm.dates, vm.company_symbols, vm.data].forEach(function (array) {
+            array.splice(index, 1)
+          });
         }
       });
     };

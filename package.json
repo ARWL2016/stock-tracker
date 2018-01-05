@@ -7,9 +7,9 @@
     "node": "8.9.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start karma.conf.js",
     "start": "node server.js",
-    "dev": "cross-env NODE_ENV=development nodemon server.js", 
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
     "kill": "taskkill /f /im node.exe"
   },
   "author": "Alistair Willis",
@@ -23,6 +23,15 @@
     "winston": "2.4.0"
   },
   "devDependencies": {
-    "cross-env": "5.1.3"
+    "cross-env": "5.1.3",
+    "jasmine": "2.8.0",
+    "karma": "2.0.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-edge-launcher": "0.4.2",
+    "karma-firefox-launcher": "1.1.0",
+    "karma-ie-launcher": "1.0.0",
+    "karma-jasmine": "1.1.1",
+    "karma-mocha-reporter": "2.2.5",
+    "karma-phantomjs-launcher": "1.0.4"
   }
 }

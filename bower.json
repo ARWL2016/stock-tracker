@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "1.7.2",
     "angular": "^1.6.4",
     "angular-route": "^1.6.4",
     "normalize-css": "normalize.css#^7.0.0"

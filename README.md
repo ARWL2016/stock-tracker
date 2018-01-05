@@ -19,6 +19,8 @@ http://jtblin.github.io/angular-chart.js/
 - mysql 2/13
 - chartjs 2.6.0 (CDN)
 - angular-chart.js (CDN) 
+- karma 2.0.0 https://karma-runner.github.io/2.0/config/configuration-file.html 
+- jasmine 2.8.0 https://jasmine.github.io/setup/nodejs.html 
 
 #### Notes 
 - as the front end Javascript is not transpiled, ES6 features are avoided to keep it compatible with older browsers
