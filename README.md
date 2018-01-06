@@ -26,6 +26,8 @@ http://jtblin.github.io/angular-chart.js/
 - as the front end Javascript is not transpiled, ES6 features are avoided to keep it compatible with older browsers
 - use http://127.0.0.1:3000/main to connect in IE11
 - Tested in Chrome, Opera, IE11
+- testing: all js deps includinɡ ɜrd party ones need to be added to karma.conf (so dont use CDN)
+- testing: private methods have to be exported from services to be testable
 
 #### Run this App in Development
 - clone repo 
