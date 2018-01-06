@@ -20,7 +20,7 @@
       }]); 
 
       app.run([function () {
-        console.log('Stock Tracker App ready to go');
+
       }]);
 
 }());

@@ -52,7 +52,7 @@
 
     vm.renderChart = function() {
       resetChartData();
-      var chartData = utils.renderChart(vm.timescale, vm.packets, vm.data, vm.dates, vm.legends);
+      var chartData = utils.renderChart(vm.timescale, vm.packets, vm.data, vm.legends);
       vm.data = chartData.data; 
       vm.dates = chartData.dates; 
       vm.legends = chartData.legends; 

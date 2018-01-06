@@ -17,10 +17,13 @@ module.exports = function(config) {
     files: [
       'lib/angular/angular.min.js',
       'lib/angular-route/angular-route.min.js',
-      'lib/angular-mocks/angular-mocks.min.js',
+      'lib/angular-mocks/angular-mocks.js',
+      "lib/chart.js/dist/chart.min.js",
+      "lib/angular-chart.js/dist/angular-chart.js",
+      'app/js/app.js',
+      'app/js/**/*.js',
       'spec/**/*.spec.js',
-      'spec/**/*',
-      'app/js/**/*.js'
+      'spec/**/*'
     ],
 
 
@@ -61,7 +64,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     // Available: 'Chrome', 'Firefox', 'IE', 'Edge', 'PhantomJS'
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode

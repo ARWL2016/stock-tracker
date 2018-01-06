@@ -11,6 +11,8 @@
     
   function StockDataService($http) {
 
+    var api = {};
+
     // package data for the controller [private]
     function createPacket (data) {
       var dataset = data.dataset; 
@@ -27,8 +29,10 @@
       return company.split('[')[1].slice(0, -1); 
     }
 
-    // fetch data for single stock [PUBLIC]
-    function getTimeSeriesData (company) {
+    ///// PUBLIC METHODS
+
+    // fetch data for single stock 
+    api.getTimeSeriesData = function(company) {
       var symbol = extractSymbol(company);
       
       return $http.get('data/' + symbol)
@@ -40,21 +44,20 @@
           console.log(err);
           return Promise.reject(err);
         });
-      };
+    };
 
-      // remove packet from array if it is being added again [PUBLIC]
-      function addNewPacket(newPacket, packets) {
-        packets = packets.filter(function(packet) {
-          return packet.symbol !== newPacket.symbol;
-        }); 
-        packets.push(newPacket);
-        return packets;
-      }
+    // remove packet from array if it is being added again
+    api.addNewPacket = function(newPacket, packets) {
+      packets = packets.filter(function(packet) {
+        return packet.symbol !== newPacket.symbol;
+      }); 
+      packets.push(newPacket);
+      return packets;
+    }
 
-      return { 
-        getTimeSeriesData: getTimeSeriesData, 
-        addNewPacket: addNewPacket 
-      };
+    // export private function for testing
+    api._extractSymbol = extractSymbol;
+    return api;
   };
 
 }());
