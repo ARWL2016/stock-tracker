@@ -1,19 +1,17 @@
 describe('Stock Data Service', function() {
 
+  var stockDataService = {};
+  
   beforeEach(module('app'));
+  beforeEach(angular.mock.inject(function(_stockDataService_) {
+    stockDataService = _stockDataService_;
+  }));
 
-    it('should extract the symbol from a string', function() {
-      
-      var stockDataService = {};
+  it('extractSymbol: should extract the symbol from a string', function() {
+    
+    expect(stockDataService._extractSymbol('ASTRAZENECA [AZN]')).toEqual('AZN');
 
-
-      angular.mock.inject(function(_stockDataService_) {
-        stockDataService = _stockDataService_;
-      });
-
-      expect(stockDataService._extractSymbol('ASTRAZENECA [AZN]')).toEqual('AZN');
-
-    });
+  });
 });
 
 
