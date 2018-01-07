@@ -33,10 +33,6 @@
 
     vm.error = '';
 
-    function init() {
-      vm.getStockData('ASTRAZENECA [AZN]');
-    };
-
     vm.getStockData = function(company) {
       vm.error = '';
       dataSvc.getTimeSeriesData(company)
@@ -56,38 +52,6 @@
       vm.data = chartData.data; 
       vm.dates = chartData.dates; 
       vm.legends = chartData.legends; 
-
-      ///
-
-      // var datesArray = [];
-      // var dataArray = [];
-      // var divisor = vm.timescale.divisor; 
-      // var seriesLength = vm.timescale.seriesLength;
-
-      // vm.packets.forEach(function(packet, packetIndex) {
-
-      //   packet.price_data.forEach(function(price, priceIndex) {
-      //     if (priceIndex < seriesLength && (priceIndex % divisor === 0)) {
-      //       dataArray.unshift(price[1]);
-      //       if (packetIndex === 0) {
-      //         var trimmedDate = utils.trimDate(divisor, price[0]);
-      //         datesArray.unshift(trimmedDate);
-      //       }
-      //     }
-      //   }); 
-
-      //   vm.data.push(dataArray); 
-      //   dataArray = []; 
-      //   vm.dates = datesArray; 
-      //   vm.legends.push(packet.symbol);  
-      // }); 
-    }
-
-
-    resetChartData = function() {
-      vm.data = [];
-      vm.dates = [];
-      vm.legends = [];
     }
 
     vm.removeData = function (symbol) {
@@ -105,9 +69,17 @@
       vm.renderChart();
     }
 
+    resetChartData = function() {
+      vm.data = [];
+      vm.dates = [];
+      vm.legends = [];
+    }
+
+    function init() {
+      vm.getStockData('ASTRAZENECA [AZN]');
+    };
+
     init();
-
-
   }
 
 
