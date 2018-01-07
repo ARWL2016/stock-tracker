@@ -8,7 +8,7 @@
       <th class="company-list-symbol-column">Symbol</th>
     </tr>
     <tr ng-repeat="company in comp.companyList">
-      <td class="company-list-company-column"><a ng-href="/main/{{company.symbol | lowercase }}" >{{ company.company_name }}</a></td>
+      <td class="company-list-company-column">{{ company.company_name }}</td>
       <td class="company-list-symbol-column">{{ company.symbol}}</td>
     </tr>
   </table>

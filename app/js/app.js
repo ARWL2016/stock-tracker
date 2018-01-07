@@ -5,7 +5,7 @@
       app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
        
         $routeProvider
-            .when('/main/:symbol?', {
+            .when('/main', {
               templateUrl: '/templates/Main.html',
               controller: 'MainController', 
               controllerAs: 'main'

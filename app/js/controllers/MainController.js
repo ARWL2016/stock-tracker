@@ -33,9 +33,9 @@
 
     vm.error = '';
 
-    vm.getStockData = function(company, symbol) {
+    vm.getStockData = function(company) {
       vm.error = '';
-      dataSvc.getTimeSeriesData(company, symbol)
+      dataSvc.getTimeSeriesData(company)
         .then(function(newPacket) {
           vm.query = '';
           vm.packets = dataSvc.addNewPacket(newPacket, vm.packets);
@@ -77,12 +77,7 @@
     }
 
     function init() {
-      var symbol = $routeParams.symbol; 
-      $location.url('/main');
-      if (symbol) {
-        return vm.getStockData(null, symbol);
-      } 
-      vm.getStockData('ASTRAZENECA [AZN]', null);
+      vm.getStockData('ASTRAZENECA [AZN]');
     };
 
     init();

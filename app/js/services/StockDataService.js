@@ -29,11 +29,9 @@
       return company.split('[')[1].slice(0, -1); 
     }
 
-    api.getTimeSeriesData = function(company, symbol) {
-      if (company) {
-        var symbol = extractSymbol(company);
-      }
-      
+    api.getTimeSeriesData = function(company) {
+      var symbol = extractSymbol(company);
+  
       return $http.get('data/' + symbol)
         .then(function(response) {
           var data = JSON.parse(response.data[0].data_string);

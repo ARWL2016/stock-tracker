@@ -47,12 +47,13 @@ app.listen(port, () => {
 
 // the updateData method will collect today's stock data from the API and store in MYSQL 
 // perform this in production once when the app is mounted, then once a day
+
 if (process.env.NODE_ENV === 'production') {
   updateData();
   setInterval(function() {
     logger.info('updating...');
     updateData();
-}, ms('1d'));
+ }, ms('1d'));
 }
 
 
