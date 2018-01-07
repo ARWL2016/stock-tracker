@@ -10,7 +10,9 @@
     "test": "karma start karma.conf.js",
     "start": "node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
-    "kill": "taskkill /f /im node.exe"
+    "kill": "taskkill /f /im node.exe", 
+    "deploy": "git push heroku master", 
+    "postdeploy": "heroku open"
   },
   "author": "Alistair Willis",
   "license": "ISC",
