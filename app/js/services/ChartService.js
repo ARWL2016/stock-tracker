@@ -1,9 +1,13 @@
+/**
+ *  Contains utility methods for rendering the stock data chart
+ */
+
 (function(){
 
   angular.module('app')
-    .factory('utilsService', [UtilsService]);
+    .factory('chartService', [ChartService]);
 
-  function UtilsService() {
+  function ChartService() {
 
     // remove date of the month for more than 6mo data series
     function trimDate(divisor, date) {

@@ -1,7 +1,8 @@
 /**
- *  @function getTimeSeriesData - get data for one stock 
+ *  @function getTimeSeriesData - get data for one stock from backend - call with EITHER company OR symbol and pass null for other
  *  @function createPacket - repackage data with new property names
  *  @function extractSymbol - extract the company symbol from the display string (in the search input)
+ *  @function addNewPacket - add new packet to data array and remove duplicates
  */
 
 (function(){
@@ -13,7 +14,6 @@
 
     var api = {};
 
-    // package data for the controller [private]
     function createPacket (data) {
       var dataset = data.dataset; 
       return { 
@@ -29,11 +29,10 @@
       return company.split('[')[1].slice(0, -1); 
     }
 
-    ///// PUBLIC METHODS
-
-    // fetch data for single stock 
-    api.getTimeSeriesData = function(company) {
-      var symbol = extractSymbol(company);
+    api.getTimeSeriesData = function(company, symbol) {
+      if (company) {
+        var symbol = extractSymbol(company);
+      }
       
       return $http.get('data/' + symbol)
         .then(function(response) {
@@ -41,12 +40,10 @@
           return createPacket(data);
         })
         .catch(function(err) {
-          console.log(err);
           return Promise.reject(err);
         });
     };
 
-    // remove packet from array if it is being added again
     api.addNewPacket = function(newPacket, packets) {
       packets = packets.filter(function(packet) {
         return packet.symbol !== newPacket.symbol;

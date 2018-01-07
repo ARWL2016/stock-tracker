@@ -1,6 +1,6 @@
 /**
  *  @prop query - the user search input - selected from companyList
- *  @prop companyList - options on the input 
+ *  @prop companyList - options on the input served from SymbolService
  *  @prop packets - object containing the name of a stock, its symbol, oldest and newest dates, and the whole data series
  *  
  */
@@ -8,9 +8,9 @@
 (function(){
 
   angular.module('app')
-    .controller('MainController', ['stockDataService','chartConfig','symbolService', 'utilsService', MainController]);
+    .controller('MainController', ['$routeParams', '$location', 'stockDataService','chartConfig','symbolService', 'chartService', MainController]);
 
-  function MainController(dataSvc, chartConfig, symbolSvc, utils) {
+  function MainController($routeParams, $location, dataSvc, chartConfig, symbolSvc, chartSvc) {
 
     var vm = this;
 
@@ -33,9 +33,9 @@
 
     vm.error = '';
 
-    vm.getStockData = function(company) {
+    vm.getStockData = function(company, symbol) {
       vm.error = '';
-      dataSvc.getTimeSeriesData(company)
+      dataSvc.getTimeSeriesData(company, symbol)
         .then(function(newPacket) {
           vm.query = '';
           vm.packets = dataSvc.addNewPacket(newPacket, vm.packets);
@@ -43,12 +43,13 @@
         })
         .catch(function(err) {
           vm.error = 'Sorry, data not available';
+          
         });
     };
 
     vm.renderChart = function() {
       resetChartData();
-      var chartData = utils.renderChart(vm.timescale, vm.packets, vm.data, vm.legends);
+      var chartData = chartSvc.renderChart(vm.timescale, vm.packets, vm.data, vm.legends);
       vm.data = chartData.data; 
       vm.dates = chartData.dates; 
       vm.legends = chartData.legends; 
@@ -76,11 +77,15 @@
     }
 
     function init() {
-      vm.getStockData('ASTRAZENECA [AZN]');
+      var symbol = $routeParams.symbol; 
+      $location.url('/main');
+      if (symbol) {
+        return vm.getStockData(null, symbol);
+      } 
+      vm.getStockData('ASTRAZENECA [AZN]', null);
     };
 
     init();
   }
-
-
+  
 }());

@@ -1,8 +1,13 @@
+/**
+ * @function fetchPricesBySymbol - fetches stock data for one stock from MySQL 
+ */
+
 "use strict"; 
 
 const mysql = require('mysql');
 const { connection } = require('../../mysql');
 const logger = require('../config/winston');
+const util = require('util');
 
 function fetchPricesBySymbol(req, res) {
   const id = req.params.id;
@@ -14,13 +19,14 @@ function fetchPricesBySymbol(req, res) {
   connection.query(sql, (error, results, fields) => {
     if (error) {
       logger.info(error);
-      res.status(404); 
+      res.status(500); 
     }; 
-    res.status(200).send(results); 
-
+    if (results.length === 0) {
+      res.status(404).send('no data found for ' + id); 
+    } else {
+      res.status(200).send(results); 
+    }
   });
-
-  
 }
 
 module.exports = {

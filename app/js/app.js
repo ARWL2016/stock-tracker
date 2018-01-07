@@ -5,22 +5,22 @@
       app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
        
         $routeProvider
-            .when('/main', {
+            .when('/main/:symbol?', {
               templateUrl: '/templates/Main.html',
               controller: 'MainController', 
               controllerAs: 'main'
             })
-            .when('/about', {
-              templateUrl: '/templates/About.html', 
-              controller: 'AboutController', 
-              controllerAs: 'about'
+            .when('/companies', {
+              templateUrl: '/templates/Companies.html', 
+              controller: 'CompanyController', 
+              controllerAs: 'comp'
             })
             .otherwise({ redirectTo: '/main' });
           $locationProvider.html5Mode(true);
       }]); 
 
       app.run([function () {
-
+        console.log('Stock Tracker App ready.')
       }]);
 
 }());

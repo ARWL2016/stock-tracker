@@ -1,3 +1,5 @@
+@import 'media-queries.css';
+
 /* BASE STYLES */
 
 * {
@@ -158,92 +160,26 @@ td.desc-column {
   margin-bottom: 10px; 
 }
 
-/* MEDIA QUERIES */
-
-@media screen and (max-width: 1200px) {
-
-  .navbar-container {
-    max-width: 900px; 
-    
-  }
- 
-  .search-form-container {
-    width: 100%; 
-    max-width: 900px;   
-    float: none; 
-    display: block;
-    margin: 0 auto;
-  }
- 
- .output-container {
-   width: 100%; 
-   max-width: 900px;
-   float: none; 
-   margin: 0 auto;
-  }
-
-  .search-form {
-    padding-bottom: 10px;
-
-  }
-
-  .search-input, 
-  .select-input, 
-  .search-btn {
-    display: inline;
-    max-width: 200px;
-    margin: 3px;
-  }
-
-  ul.search-tips {
-    margin-top: 15px;
-    padding-left: 0;
-  }
-
-  ul.search-tips > li {
-    display: inline;
-  }
+.error {
+  color: red;
 }
 
-@media screen and (max-width: 700px) {
+/* COMPANIES PAGE */
 
-  ul.navbar-menu > li.logo {
-    margin-bottom: 5px;
-    /* border: 1px dotted red; */
-  }
-
-  .search-input, 
-  .select-input, 
-  .search-btn {
-    display: block;
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .chart-container {
-    padding: 3px;
-  }
-
-  .table-container {
-    width: 100%;
-    margin: 0 auto; 
-    padding: 20px;
-  }
-
-  table {
-    width: 100%;
-  }
-
-  .desc-column {
-    display: none;
-  }
-
-  .symbol-column,  
-  .remove-column, 
-  .date-column, 
-  .price-column {
-    width: auto;
-  }
+div.company-list-container {
+  max-width: 600px; 
+  margin: 0 auto;
+  text-align: center;
 }
+
+h1.company-list-heading {
+  padding: 0 10px; 
+}
+table.company-list-table {
+  margin: 0 auto;
+  width: 100%;
+  background-color: white;
+}
+
 
 

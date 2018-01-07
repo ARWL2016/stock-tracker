@@ -1,3 +1,9 @@
+/**
+ * @function updateData - iterates over all companies in mysql/stock-symbols.js and calls QUANDL API. 
+ * Data returned is stored in MySQL time_series_data table. 
+ * Updates once a day.
+ */
+
 'use strict'
 
 const request = require('request');
