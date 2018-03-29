@@ -2,11 +2,19 @@
 <div class="search-form-container">
   <form class="search-form" ng-submit="main.getStockData(main.query)">
       <p><b>Enter a stock symbol or company name to search.</b></p>
-      <input type="search" ng-model="main.query" list="symbol-list" class="search-input" />
 
+      <!-- DEPRECATED - datalist is buggy on Edge -->
+      <!-- <input type="search" ng-model="main.query" list="symbol-list" class="search-input" />
       <datalist id="symbol-list"> 
         <option ng-repeat="company in main.companyList" value="{{ company.company_name }} [{{ company.symbol }}]">
-      </datalist>
+      </datalist> -->
+  
+      <select class="select-input" ng-model="main.query">
+        <option ng-repeat="company in main.companyList" value="{{ company.company_name }} [{{ company.symbol }}]">
+          {{ company.company_name }} [{{ company.symbol }}]
+        </option>
+      </select>
+
       <select name="select" class="select-input" ng-model="main.timescaleSelected" ng-change="main.changeTimescale()"> 
         <option value="threeMonths">3 months</option> 
         <option value="sixMonths">6 months</option>
